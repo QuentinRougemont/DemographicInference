@@ -21,6 +21,7 @@ The modified version of dadi contain 4 improvements:
 3. An improvement of the method that search for the global optimum of the likelihood function. Optimization is performed using a Simulated Annealing (SA) optimization procedure (implemented in the inference.py module) before BFGS optimization. In practice, one hot and one cold SA optimization are performed before  one additional round of BFGS optimization. See the script script_inference_anneal2_newton.py for further details. Of course, this does not preclude to perform multiple runs to check for convergence in likelihood estimations among independent runs.
 
 4. The error rate for ancestral allelic state identification in unfolded JSFS is taken into account by a misorientation parameter (O).
+
 These modifications were originally developed by Tine et al. (2014). Yoann Anciaux, Christelle Fraïsse, Pierre-Alexandre Gagnaire, and Nicolas Bierne (see Tine et al. 2014).
 
 ######################Unfolding and Folding
