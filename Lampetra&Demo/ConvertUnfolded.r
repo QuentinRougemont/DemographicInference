@@ -1,11 +1,3 @@
-#At the end, use the script dadi.sh to ad the "-" in the first two colomns
-#FS <- read.table("spectrum.OIR.tmp",header=T)
-#FS <- read.table("spectrum_SAU.tmp",header=T)
-#FS <- read.table("spectrum_CEN.tmp",header=T)
-#FS <- read.table("spectrum_ODO.tmp",header=T)
-#FS <- read.table("spectrum_AA.tmp2",header=T)
-#FS <- read.table("spectrum_BRE.tmp",header=T)
-#FS <- read.table("spectrum_RIS.tmp",header=T)
 
 FS <- read.table("spectrum_BET.tmp",header=T)
 
