@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --account=XXX
+#SBATCH --account=def-audetc
 #SBATCH --time=02:45:00
 #SBATCH --job-name=abc
 #SBATCH --output=abc-%J.out
@@ -12,8 +12,11 @@
 ##PBS -l nodes=1:ppn=8
 ##SBATCH --mail-type=EA 
 
+source temp/bin/activate
 # Move to directory where job was submitted
 cd $SLURM_SUBMIT_DIR
+
+cd 01-scripts
 
 #List of wanted arguments
 fs=$1     #dataset fs stored in 03-data
@@ -38,7 +41,7 @@ then
     exit
 fi
 
-for i in $(seq 32)
+for i in $(seq 1)
 do
-    ./01.scripts/00-run_model.sh "$fs" "$model" "$folded"
+    ./00-run_model.sh "$fs" "$model" "$folded"
 done
