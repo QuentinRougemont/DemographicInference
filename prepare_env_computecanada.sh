@@ -1,5 +1,5 @@
 cd $HOME
-cd dadi_modif
+cd DemographicInference
 module load gcc/4.8.5
 module load python/2.7.13
 mkdir temp
