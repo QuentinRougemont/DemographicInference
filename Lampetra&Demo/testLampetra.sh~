@@ -1,2 +1,0 @@
-# commande test modele demo dadi #
-python script_inference_anneal2_newton_mis.py -f ../Data/ATL_MED.fs -y ATL -x MED -p 90,100,110 -m SI,IM,AM,PAM,SC,PSC,SC2M,SC2M2P,PSC2M2P -z -l -v
