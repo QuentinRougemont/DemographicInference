@@ -1,5 +1,10 @@
 
-FS <- read.table("spectrum_BET.tmp",header=T)
+
+argv <- commandArgs(T)
+
+fs <- argv[1]
+
+FS <- read.table(fs,header=T)
 
 attach(FS)
 
@@ -92,14 +97,4 @@ t=rep(x,z)
 NEWFS[,1]=paste(t,NEWFS[,1],t ,sep="")
 NEWFS[,2]=paste(t,NEWFS[,2],t ,sep="")
 
-
-
-
-write.table(NEWFS,"spectrum_BET.data", sep="\t", row.names=F,quote=F)
-#write.table(NEWFS,"spectrum_AA.data", sep="\t", row.names=F,quote=F)
-#write.table(NEWFS,"spectrum_BRE.data", sep="\t", row.names=F,quote=F)
-#write.table(NEWFS,"spectrum_OIR.data", sep="\t", row.names=F,quote=F)
-#write.table(NEWFS,"spectrum_SAU.data", sep="\t", row.names=F,quote=F)
-#write.table(NEWFS,"spectrum_RIS.data", sep="\t", row.names=F,quote=F)
-#write.table(NEWFS,"spectrum_CEN.data", sep="\t", row.names=F,quote=F)
-#write.table(NEWFS,"spectrum_ODO.data", sep="\t", row.names=F,quote=F)
+write.table(NEWFS,paste("unfolded", fs sep=".") , sep="\t", row.names=F,quote=F)
