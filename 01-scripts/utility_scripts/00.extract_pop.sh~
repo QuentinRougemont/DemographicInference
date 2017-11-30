@@ -56,7 +56,7 @@ vcftools --vcf "$folder"/batch_"$pop1"_spectrum.recode.vcf --freq --out "$folder
 vcftools --vcf "$folder"/batch_"$pop2"_spectrum.recode.vcf --freq --out "$folder"/batch_"$pop2"_spectrum
 
 #Merge the files
-paste "$folder"/batch_"$pop1"_spectrum.frq  "$folder"/batch_"$pop2"_spectrum.frq | perl -pe 's/:/\t/g' | sed '1d' > "$folder"/batch_spectrum.txt
+paste "$folder"/batch_1"$pop1"_spectrum.frq  "$folder"/batch_1"$pop2"_spectrum.frq | perl -pe 's/:/\t/g' | sed '1d' > "$folder"/batch_spectrum.txt
 awk '{print $5, $5, $4, $5, $6, $7, $8, $12,  $14, $16, $1, $2 }' "$folder"/batch_spectrum.txt > "$folder"/spectrum.tmp
 
 cd "$folder"/

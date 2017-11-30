@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --account=def-audetc
+#SBATCH --account=XXXXXX
 #SBATCH --time=02:45:00
 #SBATCH --job-name=abc
 #SBATCH --output=abc-%J.out
@@ -8,7 +8,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
 ##SBATCH --gres=cpu:32
-##SBATCH --mail-user=quentinrougemont@orange.fr
+##SBATCH --mail-user=yourmail
 ##PBS -l nodes=1:ppn=8
 ##SBATCH --mail-type=EA 
 
