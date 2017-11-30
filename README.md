@@ -2,6 +2,11 @@
 DemographicInference
 This repository contains files and scripts from dadi v1.6.3 (Gutenkunst et al. 2009) that were modified to improve optimization, as well as custom models that account for semi-permeability (i.e by including variable effective migration rates across the genome), as introduced by Tine et al 2014. The repository also contains data from Rougemont et al. 2016 who applied these models to European lamprey ecotypes using both Folded and Unfolded JSFS. The approach implemented in dadi relies on the comparison of alternative demographic models of divergence to genome-wide polymorphism data.
 
+##WARNING
+
+This pipeline requires `scipy` v0.13.3 or older versions. The simulated annealing implemented in  `model_demo.py` is deprecated in newer version of scipy.
+The script `prepare_env_computecanada.sh` provides an example of how to set a working envrionment with these old modules and should made the example fully reproducible.
+
 REFERENCES: 
 Gutenkunst RN, Hernandez RD, Williams SH, Bustamante CD (2009) Inferring the joint demographic history of multiple populations from multidimensional SNP frequency data. PLoS Genet 5: e1000695.
 
