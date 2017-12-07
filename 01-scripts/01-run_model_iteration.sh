@@ -36,4 +36,4 @@ else
    -f "$fs" -m "$model" -l -v  -z &>> 10-log/"$model"_"$i".log;
 fi 
 
-mv *masked* 04-results
+#mv *masked* 04-results

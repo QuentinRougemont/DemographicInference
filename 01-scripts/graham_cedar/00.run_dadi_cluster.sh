@@ -18,8 +18,6 @@ cd $SLURM_SUBMIT_DIR
 
 module load parallel/20170622
 
-#cd 01-scripts
-
 #List of wanted arguments
 fs=$1     #dataset fs stored in 03-data
 model=$2  #model names
@@ -51,6 +49,3 @@ then
 fi
 
 ./01-scripts/00.run_dadi_parallel.sh "$fs" "$model" "$folded" "$grid_size"
-#nrep=100
-#NUM_CPUS=32
-#seq $nrep |parallel -j "$NUM_CPUS" ./01-run_model_iteration.sh {} "$fs" "$model" "$folded"
