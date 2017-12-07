@@ -33,6 +33,6 @@ then
     exit
 fi
 
-nrep=5
-NUM_CPUS=4
+nrep=64
+NUM_CPUS=32
 seq $nrep |parallel -j "$NUM_CPUS" ./01-run_model_iteration.sh {} "$fs" "$model" "$folded" "$grid_size"
