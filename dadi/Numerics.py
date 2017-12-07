@@ -71,7 +71,7 @@ def estimate_best_exp_grid_crwd(ns):
                          'determined for 3D or more models. Try sticking with '
                          'crwd=8.')
 
-def exponential_grid(pts, crwd=2.):
+def exponential_grid(pts, crwd=8.):
     """
     An exponentially spaced grid. This is now the default grid.
 
