@@ -52,4 +52,4 @@ fi
 
 nrep=100
 NUM_CPUS=32
-seq $nrep |parallel -j "$NUM_CPUS" ./01-run_model_iteration.sh {} "$fs" "$model" "$folded"
+seq $nrep |parallel -j "$NUM_CPUS" ./00-run_model_iteration.sh {} "$fs" "$model" "$folded"
