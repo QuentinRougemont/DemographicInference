@@ -7,18 +7,24 @@ vcffile=$3
 if [[ -z "$pop1" ]]
 then
        echo "Error: need pop name"
+       echo "please provide populations name and vcffile:"
+       echo "./00.extract_pop.sh pop1 pop2 yourvcf.vcf"
        exit
 fi
 
 if [[ -z "$pop2" ]]
 then
        echo "Error: need pop name"
+       echo "please provide populations name and vcffile:"
+       echo "./00.extract_pop.sh pop1 pop2 yourvcf.vcf"
        exit
 fi
 
 if [[ -z "$vcffile" ]]
 then
        echo "Error: need input vcf-file!!!"
+       echo "please provide populations name and vcffile:"
+       echo "./00.extract_pop.sh pop1 pop2 yourvcf.vcf"
        exit
 fi
 
@@ -45,11 +51,16 @@ grep "^#" "$folder"/batch_"$pop1"."$pop2".vcf > header
 cat header "$folder"/batch_"$pop1"."$pop2".spectrum.tmp > "$folder"/batch_"$pop1"."$pop2".spectrum.vcf 
 rm header "$folder"/*tmp 
 
+#remove invariant sites
+vcftools --vcf "$folder"/batch_"$pop1"."$pop2".spectrum.vcf --freq --out "$folder"/freq_"$pop1"."$pop2"  
+less "$folder"/freq_"$pop1"."$pop2".frq |grep -v ":1" |awk '{print $1, $2}' |sed 's/ /\t/g' > "$folder"/polymorphic_sites 
+vcftools --vcf  "$folder"/batch_"$pop1"."$pop2".spectrum.vcf --positions "$folder"/polymorphic_sites --out "$folder"/batch_"$pop1"."$pop2".spectrum.polym  --recode --recode-INFO-all 
+
 #ici on peut rouler le script pour ne garder qu'un seul SNPs par RAD loci
 #bash get_single.snp.sh "$folder"/batch_"$pop1"."$pop2".spectrum.vcf 
 #Extract again the pop
-vcftools --vcf "$folder"/batch_"$pop1"."$pop2".spectrum.vcf  --keep "$pop1" --out "$folder"/batch_"$pop1"_spectrum --recode
-vcftools --vcf "$folder"/batch_"$pop1"."$pop2".spectrum.vcf --keep "$pop2" --out "$folder"/batch_"$pop2"_spectrum --recode
+vcftools --vcf "$folder"/batch_"$pop1"."$pop2".spectrum.polym.recode.vcf --keep "$pop1" --out "$folder"/batch_"$pop1"_spectrum --recode
+vcftools --vcf "$folder"/batch_"$pop1"."$pop2".spectrum.polym.recode.vcf --keep "$pop2" --out "$folder"/batch_"$pop2"_spectrum --recode
 
 #allele frequencies
 vcftools --vcf "$folder"/batch_"$pop1"_spectrum.recode.vcf --freq --out "$folder"/batch_"$pop1"_spectrum
@@ -60,6 +71,6 @@ paste "$folder"/batch_"$pop1"_spectrum.frq  "$folder"/batch_"$pop2"_spectrum.frq
 awk '{print $5, $5, $4, $5, $6, $7, $8, $12,  $14, $16, $1, $2 }' "$folder"/batch_spectrum.txt > "$folder"/spectrum.tmp
 
 cd "$folder"/
-Rscript ../01.prepare.spectrum.R 
+Rscript ../01-scripts/utility_scripts/01.prepare.spectrum.R 
 #To do: replace Rscript by a single bash script
 exit
