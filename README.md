@@ -7,6 +7,18 @@ This repository contains files and scripts from dadi v1.6.3 (Gutenkunst et al. 2
 This pipeline requires `scipy` v0.13.3 or older versions. The simulated annealing implemented in  `model_demo.py` is deprecated in newer version of scipy.
 The script `prepare_env_computecanada.sh` provides an example of how to set a working envrionment with these old modules and should made the example fully reproducible.
 
+Dependencies:
+`python2.7`
+`scipy v0.13` or less
+`numpy`
+`matplotlib`
+`pylab`
+
+To extract population SFS using `utility_scripts`:
+`vcftools`
+`bgzip`
+`tabix`
+
 REFERENCES: 
 Gutenkunst RN, Hernandez RD, Williams SH, Bustamante CD (2009) Inferring the joint demographic history of multiple populations from multidimensional SNP frequency data. PLoS Genet 5: e1000695.
 
