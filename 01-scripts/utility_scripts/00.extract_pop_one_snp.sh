@@ -59,7 +59,7 @@ cd ../
 grep "#" "$folder"/batch_"$pop1"."$pop2".spectrum.vcf > "$folder"/header.tmp
 
 cat "$folder"/header.tmp "$folder"/vcf_one_snp.tmp > "$folder"/batch_"$pop1"."$pop2".spectrum.one.snp.vcf 
-rm "$folder"/*tmp
+#rm "$folder"/*tmp
 
 #remove globally invariant sites
 vcftools --vcf "$folder"/batch_"$pop1"."$pop2".spectrum.one.snp.vcf --freq --out "$folder"/freq_"$pop1"."$pop2" 

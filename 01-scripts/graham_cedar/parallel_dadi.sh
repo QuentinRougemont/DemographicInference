@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --account=XXXXXX
-#SBATCH --time=02:45:00
+#SBATCH --account=def-audetc
+#SBATCH --time=08:45:00
 #SBATCH --job-name=abc
 #SBATCH --output=abc-%J.out
 ##SBATCH --array=1-33%33
@@ -24,6 +24,7 @@ cd 01-scripts
 fs=$1     #dataset fs stored in 03-data
 model=$2  #model names
 folded=$3 #either "folded" or "unfolded"
+grid_size=$4
 
 if [[ -z "$fs" ]]
 then
@@ -43,10 +44,12 @@ then
     exit
 fi
 
+if [[ -z "$grid_size" ]]
+then
+    echo "Error: need gride_size for optimisation"
+    exit
+fi
+
 nrep=100
 NUM_CPUS=32
-#seq $bootrep |parallel -j "$NUM_CPUS" ../treemix_iterations.sh {} "$mig"
-#for i in $(seq 1)
-#do
 seq $nrep |parallel -j "$NUM_CPUS" ./00-run_model_iteration.sh {} "$fs" "$model" "$folded"
-#done
