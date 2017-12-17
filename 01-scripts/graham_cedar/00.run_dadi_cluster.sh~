@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --account=your_account
+#SBATCH --account=def-audetc
 #SBATCH --time=08:45:00
 #SBATCH --job-name=abc
 #SBATCH --output=abc-%J.out
