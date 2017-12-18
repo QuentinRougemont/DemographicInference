@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd 01-scripts
 id=$1
 fs=$2     #dataset fs stored in 03-data
 model=$3  #model names
