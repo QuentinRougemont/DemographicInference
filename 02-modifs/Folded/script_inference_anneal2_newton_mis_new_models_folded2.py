@@ -5,16 +5,17 @@
 import os
 import sys
 import getopt
-import pylab
+#import pylab
 import time
 from scipy import stats
 
 import numpy
 from numpy import array
 import dadi
-
+import matplotlib
+matplotlib.use('Agg')
 import modeledemo_mis_new_models
-
+from matplotlib import pyplot as plt
 
 #Help function
 def usage():
@@ -168,8 +169,7 @@ def callmodel(func, data, output_file, modeldemo, ll_opt_dic, nbparam_dic,
 
 	# Plot a comparison of the resulting fs with the data.
         if optimizationstate == "BFGS" :
-		import pylab
-		pylab.figure()
+		plt.figure()
 		dadi.Plotting.plot_2d_comp_multinom(model, data, vmin=0.1, resid_range=3,
 							    pop_ids =(nompop1,nompop2),
 							    saveplot=True, nomplot=(outputname + "_" + modeldemo), showplot=False)
