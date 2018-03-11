@@ -41,7 +41,7 @@ then
         &>> ../10-log/"$model"_"$id".log;
 else
     python 02-modifs/unfolded/script_inference_anneal2_newton_mis.py \
-        -o "$model"_$i \
+        -o "$model"_"$id" \
         -y pop1 \
         -x pop2 \
         -p $grid_size,$grid_size2,$grid_size3 \
