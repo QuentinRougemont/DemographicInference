@@ -167,7 +167,7 @@ def plot_single_2d_sfs(sfs, vmin=None, vmax=None, ax=None,
                                            vmax=vmax*(1+1e-3))
         format = None
     mappable=ax.pcolor(numpy.ma.masked_where(sfs<vmin, sfs), 
-                       cmap=pylab.cm.hsv, edgecolors='none',
+                       cmap=pylab.cm.hsv, shading='flat',
                        norm=norm)
     ax.figure.colorbar(mappable, extend=extend, format=format)
     if not colorbar:
@@ -215,7 +215,7 @@ def plot_2d_resid(resid, resid_range=None, ax=None, pop_ids=None,
         resid_range = abs(resid).max()
 
     mappable=ax.pcolor(resid, cmap=pylab.cm.RdBu_r, vmin=-resid_range, 
-                       vmax=resid_range, edgecolors='none')
+                       vmax=resid_range, shading='flat')
 
     cbticks = [-resid_range, 0, resid_range]
     format = matplotlib.ticker.FormatStrFormatter('%.2g')
