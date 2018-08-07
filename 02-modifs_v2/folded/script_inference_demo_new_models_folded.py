@@ -205,8 +205,8 @@ if masked:
 outputname = outputname + "_" + repr(time.localtime()[0]) + "_" + repr(time.localtime()[1]) + "_" + repr(time.localtime()[2]) + "_" + repr(time.localtime()[3]) + repr(time.localtime()[4]) + repr(time.localtime()[5])
 
 # Create output dir and file
-os.mkdir("../" + outputname)
-output_file = open(("../" + outputname + "/" + outputname + ".txt"), "w")
+os.mkdir(outputname)
+output_file = open((outputname + "/" + outputname + ".txt"), "w")
 
 # Save the parameters
 if logparam :
@@ -246,7 +246,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -275,7 +275,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -305,7 +305,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -335,7 +335,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -365,7 +365,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -395,7 +395,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -425,7 +425,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -454,7 +454,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -483,7 +483,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -513,7 +513,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -546,7 +546,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -575,7 +575,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -605,7 +605,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -635,7 +635,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -665,7 +665,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -695,7 +695,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -725,7 +725,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -760,7 +760,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -790,7 +790,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -820,7 +820,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -851,7 +851,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -882,7 +882,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -912,7 +912,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -943,7 +943,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -973,7 +973,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -1002,7 +1002,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
@@ -1031,7 +1031,7 @@ for namemodel in model_list:
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
 								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
-								  outputname="../" + outputname + "/" + outputname, 
+								  outputname=outputname + "/" + outputname, 
 								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
 								  schedule= "cauchy")
 		if done: print(("\n" + namemodel + " : done\n"))
