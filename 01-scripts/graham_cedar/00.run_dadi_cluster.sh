@@ -49,4 +49,4 @@ then
     exit
 fi
 
-./01-scripts/00.run_dadi_parallel.sh "$fs" "$model" "$folded" "$grid_size"
+./01-scripts/00.run_dadi_parallel_v2.sh "$fs" "$model" "$folded" "$grid_size"
