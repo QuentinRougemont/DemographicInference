@@ -29,7 +29,7 @@ fi
 
 if [ $folded = "folded" ]
 then
-	python ./02-modifs_v2/folded/script_inference_demo_new_models_folded.py \
+	python ../02-modifs_v2/folded/script_inference_demo_new_models_folded.py \
 		-o "$model"_"$id" \
 		-y pop1 -x pop2 \
 		-p $grid_size,$grid_size2,$grid_size3  \
@@ -37,9 +37,9 @@ then
 		-m "$model" \
 		-l -v  \
 		-z \
-		&>> ./10-log/"$model"_"$id".log;
+		&>> ../10-log/"$model"_"$id".log;
 else
-    python ./02-modifs_v2/unfolded/script_inference_demo_new_models.py \
+    python ../02-modifs_v2/unfolded/script_inference_demo_new_models.py \
 	    -o "$model"_$id \
 	    -y pop1 -x pop2 \
 	    -p $grid_size,$grid_size2,$grid_size3  \
@@ -47,7 +47,7 @@ else
 	    -m "$model" \
 	    -l -v \
 	    -z \
-	    &>> ./10-log/"$model"_"$id".log;
+	    &>> ../10-log/"$model"_"$id".log;
 fi 
 
 #mv *masked* 04-results
