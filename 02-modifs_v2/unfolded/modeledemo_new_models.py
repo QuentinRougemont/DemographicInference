@@ -1,4 +1,4 @@
-#! ~/py33/bin
+#!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
 """
@@ -310,6 +310,89 @@ def IM2N(params, (n1,n2), pts):
     fs= O*((1-Q)*fsnrO + Q*fslrO) + (1-O)*((1-Q)*fsnrM + Q*fslrM)
     return fs
 
+def IM2N2m(params, (n1,n2), pts):
+    nu1, nu2, hrf, m12, m21, me12, me21, Ts, P, Q = params
+
+    """
+    Model of semi permeability with split, ongoing migration with 2 migration rates, heterogenous effective population size (2 classes, shared by the two populations = background selection)
+
+    nu1: Size of population 1 after split.
+    nu2: Size of population 2 after split.
+    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of background selection and selective sweep effects
+    m12: Migration from pop 2 to pop 1 (2*Na*m12).
+    m21: Migration from pop 1 to pop 2.
+    me12: Effective migration from pop 2 to pop 1 in genomic islands.
+    me21: Effective migration from pop 1 to pop 2 in genomic islands.
+    Ts: The scaled time between the split and the ancient migration (in units of 2*Na generations).
+    P: The proportion of the genome evolving neutrally
+    Q: The proportion of the genome with a reduced effective size due to selection at linked sites
+    O: The proportion of accurate orientation
+    n1,n2: Size of fs to generate.
+    pts: Number of points to use in grid for evaluation.
+    """
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+
+    #### Calculate the neutral spectrum
+    # phi for the equilibrium ancestral population
+    phiN = dadi.PhiManip.phi_1D(xx)
+    # Now do the divergence event
+    phiN = dadi.PhiManip.phi_1D_to_2D(xx, phiN)
+    # We set the population sizes after the split to nu1 and nu2 and the migration rate to m12 and m21
+    phiN = dadi.Integration.two_pops(phiN, xx, nu1, nu2, m12=m12, m21=m21)
+    ###
+    ## calculate the spectrum.
+    # oriented
+    fsNO = dadi.Spectrum.from_phi(phiN, (n1,n2), (xx,xx))
+    # mis-oriented
+    fsNM = dadi.Numerics.reverse_array(fsNO)
+
+    #### Calculate the genomic island spectrum
+    # phi for the equilibrium ancestral population
+    phiI = dadi.PhiManip.phi_1D(xx)
+    # Now do the divergence event
+    phiI = dadi.PhiManip.phi_1D_to_2D(xx, phiI)
+    # We set the population sizes after the split to nu1 and nu2 and the migration rates to me12 and me21
+    phiI = dadi.Integration.two_pops(phiI, xx, Ts, nu1, nu2, m12=me12, m21=me21)
+    ###
+    ## calculate the spectrum.
+    # oriented
+    fsIO = dadi.Spectrum.from_phi(phiI, (n1,n2), (xx,xx))
+    # mis-oriented
+    fsIM = dadi.Numerics.reverse_array(fsIO)
+
+    #### Calculate the pectrum in normally-recombining regions
+    #### Calculate the pectrum in normally-recombining regions
+    # phi for the equilibrium ancestral population
+    phinr = dadi.PhiManip.phi_1D(xx)
+    # Now do the divergence event
+    phinr = dadi.PhiManip.phi_1D_to_2D(xx, phinr)
+    # We set the population sizes after the split to nu1 and nu2 and the migration rates to m12 and m21
+    phinr = dadi.Integration.two_pops(phinr, xx, nu1, nu2, m12=m12, m21=m21)
+    ###
+    ## calculate the spectrum.
+    # oriented
+    fsnrO = dadi.Spectrum.from_phi(phinr, (n1,n2), (xx,xx))
+    # mis-oriented
+    fsnrM = dadi.Numerics.reverse_array(fsnrO)
+
+    #### Spectrum of low-recombining regions
+    # phi for the equilibrium ancestral population
+    philr = dadi.PhiManip.phi_1D(xx)
+    # Now do the divergence event
+    philr = dadi.PhiManip.phi_1D_to_2D(xx, philr)
+    # We set the population sizes after the split to hrf*nu1 and hrf*nu2 and the migration rates to m12 and m21
+    philr = dadi.Integration.two_pops(philr, xx, nu1*hrf, nu2*hrf, m12=m12, m21=m21)
+    ###
+    ## calculate the spectrum.
+    # oriented
+    fslrO = dadi.Spectrum.from_phi(philr, (n1,n2), (xx,xx))
+    # mis-oriented
+    fslrM = dadi.Numerics.reverse_array(fslrO)
+    
+    #### Sum the spectra
+    fs = O*(P*fsNO+(1-P)*fsIO+(1-Q)*fsnrO+Q*fslrO) + (1-O)*(P*fsNM+(1-P)*fsIM+(1-Q)*fsnrM+Q*fslrM)
+    return fs
 
 def IM2NG(params, (n1,n2), pts):
     nu1, nu2, b1, b2, hrf, m12, m21, Ts, Q, O = params
@@ -490,7 +573,7 @@ def AMG(params, (n1,n2), pts):
     phi = dadi.PhiManip.phi_1D(xx)
     # Now do the divergence event
     phi = dadi.PhiManip.phi_1D_to_2D(xx, phi)
-	# We start the population size change after the split independantly in each population and set the migration rate to m12 and m21
+    # We start the population size change after the split independantly in each population and set the migration rate to m12 and m21
     bnu1_func = lambda t: nu1 * b1**(t/Tam)
     bnu2_func = lambda t: nu2 * b2**(t/Tam)
     phi = dadi.Integration.two_pops(phi, xx, Tam, bnu1_func, bnu2_func, m12=m12, m21=m21)
@@ -545,7 +628,7 @@ def AM2N(params, (n1,n2), pts):
     fsnrO = dadi.Spectrum.from_phi(phinr, (n1,n2), (xx,xx))
     # mis-oriented
     fsnrM = dadi.Numerics.reverse_array(fsnrO)
-	
+
     #### Spectrum of low-recombining regions
     # phi for the equilibrium ancestral population
     philr = dadi.PhiManip.phi_1D(xx)

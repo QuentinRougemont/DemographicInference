@@ -1,4 +1,4 @@
-#! ~/py33/bin
+#!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
 """

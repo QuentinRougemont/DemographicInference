@@ -1,4 +1,4 @@
-#! ~/py33/bin
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Library importation
@@ -20,27 +20,27 @@ import modeledemo_mis_new_models
 
 #Help function
 def usage():
-	""" Function for help """
-	print("# This script allow you to test different demographic models on your genomic data\n"+
-	      "# and will give you which one is the best fitted.\n\n"+
-	      "# This is an exemple of the most complete command line :\n"+
-	      "# -o pathoutput -y population1 -x population2 -p 10,20,30 -f pathfsfile -m SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2NG,IM2mG,AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P -l -a -h -v\n\n"+
-	      "# This is an exemple of the shortest command line:\n"+
-	      "# -f pathfsfile\n\n"+
-	      "# -h --help : Display the help you are looking at.\n"+
-	      "# -v --verbose : Print steps while the code is running\n"+
-	      "# -y --population1 : Take the name of the first population in the sfs (y-axis)\n"+
-	      "# -x --population2 : Take the name of the second population in the sfs (x-axis)\n"+
-	      "# -o --outputname : Take the path of output file.\n"+
-	      "# -f --fs_file_name : Take the path of the fs file from thr parent directory.\n"+
-	      "# -p --grid_points : Take 3 numbers separated by a coma, for the size of grids for extrapolation.\n"+
-	      "# -m --model_list : Take until 18 name of model (SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2NG,IM2mG,AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P) separated by a coma.\n"+
-	      "# For more information on models see docstrings in the module modeledemo.\n"+
-	      "# -z : mask the singletons.\n"+
-	      "# -l : record the final parameters in the output file.\n\n\n"
-	      "########################## Enjoy ###########################")
-	return()
-	      
+    """ Function for help """
+    print("# This script allow you to test different demographic models on your genomic data\n"+
+        "# and will give you which one is the best fitted.\n\n"+
+        "# This is an exemple of the most complete command line :\n"+
+        "# -o pathoutput -y population1 -x population2 -p 10,20,30 -f pathfsfile -m SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2NG,IM2mG,AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P -l -a -h -v\n\n"+
+        "# This is an exemple of the shortest command line:\n"+
+        "# -f pathfsfile\n\n"+
+        "# -h --help : Display the help you are looking at.\n"+
+        "# -v --verbose : Print steps while the code is running\n"+
+        "# -y --population1 : Take the name of the first population in the sfs (y-axis)\n"+
+        "# -x --population2 : Take the name of the second population in the sfs (x-axis)\n"+
+        "# -o --outputname : Take the path of output file.\n"+
+        "# -f --fs_file_name : Take the path of the fs file from thr parent directory.\n"+
+        "# -p --grid_points : Take 3 numbers separated by a coma, for the size of grids for extrapolation.\n"+
+        "# -m --model_list : Take until 18 name of model (SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2NG,IM2mG,AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P) separated by a coma.\n"+
+        "# For more information on models see docstrings in the module modeledemo.\n"+
+        "# -z : mask the singletons.\n"+
+        "# -l : record the final parameters in the output file.\n\n\n"
+        "########################## Enjoy ###########################")
+    return()
+        
 	      
 
 #Argument function
@@ -422,6 +422,35 @@ for namemodel in model_list:
 			# very long times, as they will take a long time to evaluate.
 			upper_bound = [120, 120, 1, 40, 40, 10, 0.5, 0.99]
 			lower_bound = [0.01, 0.01, 0.1, 0, 0, 0, 0.01, 0.01]
+
+			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
+								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
+								  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
+								  outputname=outputname + "/" + outputname, 
+								  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
+								  schedule= "cauchy")
+		if done: print(("\n" + namemodel + " : done\n"))
+
+	if namemodel == "IM2N2m":
+
+		# Custom Ancient Migration with 2 Migration rate model and 2 population size: nu1, nu2, hrf, m12, m21, me12, me21, Ts, P, Q, O 
+		func = modeledemo_new_models.IM2N2m
+
+		for optimizationstate in opt_list:
+			print optimizationstate
+
+			if optimizationstate == "anneal_hot":		
+				params = (1, 1, 0.8, 5, 5, 0.5, 0.5, 1, 0.5, 0.1)
+			elif optimizationstate == "anneal_cold":
+				params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10])
+			else :
+				params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10])
+
+			# The upper_bound array is for use in optimization. Occasionally the optimizer
+			# will try wacky parameter values. We in particular want to exclude values with
+			# very long times, as they will take a long time to evaluate.
+			upper_bound = [120, 120, 1, 40, 40, 20, 20, 10, 0.95, 0.5]
+			lower_bound = [0.01, 0.01, 0.1, 0, 0, 0, 0, 0, 0.01, 0.05]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 

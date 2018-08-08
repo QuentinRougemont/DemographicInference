@@ -1,4 +1,4 @@
-#! ~/py33/bin
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """module modeledemo contenant les différents modèles démographiques de divergence"""
