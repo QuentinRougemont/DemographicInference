@@ -3,11 +3,12 @@
 # Move to directory where job was submitted
 
 #List of wanted arguments
-fs=$1     #dataset fs stored in 03-data
-model=$2  #model names
+fs=$1     #JSFS stored in 03-data
+model=$2  #model name
 folded=$3 #either "folded" or "unfolded"
-grid_size=$4
+grid_size=$4 #number of grid points (n pts) in dadi will be n,n+10,n+20
 
+#do not forget to update the crwd
 if [[ -z "$fs" ]]
 then
     echo "Error: need input file"

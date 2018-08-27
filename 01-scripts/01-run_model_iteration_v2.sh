@@ -4,7 +4,7 @@ id=$1
 fs=$2     #dataset fs stored in 03-data
 model=$3  #model names
 folded=$4 #either "folded" or "unfolded"
-grid_size=$5
+grid_size=$5 #number of grid points (n pts) in dadi will be n,n+10,n+20
 
 grid_size2=$(( grid_size + 10 ))
 grid_size3=$(( grid_size + 20 ))
