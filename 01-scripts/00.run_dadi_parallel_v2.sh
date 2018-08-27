@@ -8,7 +8,7 @@ model=$2  #model name
 folded=$3 #either "folded" or "unfolded"
 grid_size=$4 #number of grid points (n pts) in dadi will be n,n+10,n+20
 
-#do not forget to update the crwd
+#do not forget to update the crwd (see dadi manual)
 if [[ -z "$fs" ]]
 then
     echo "Error: need input file"
