@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- 
 
 """
-module modeledemo with demographic models of divergence used in Rougeux et al.2017
+script defining four major speciation models (AM,IM,SC,SI), allowing variable levels of gene flow (variable m) and variable levels of drift (variable Ne) to account for linked selection
 """
 
 import numpy

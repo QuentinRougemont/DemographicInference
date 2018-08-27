@@ -41,9 +41,32 @@ The modified version of dadi contain 4 improvements:
 
 1. The possibility to explictly test alternative models of speciation such as models of divergence with continuous gene flow (IM models), models of secondary contact (SC models), models of strict alloptatric divergence (SI) or models of divergence with initial gene flow followed by isolation without gene flow (AM model). The models are implemented in the model_demo.py
 
-2. The possibility to integrate semipermeability in the demographic models of divergence with gene flow (IM2m, AM2m) and secondary contacts (SC2m). Modelling variable migration rates across the genome  is a simple way to capture the effect of genetic barriers to gene flow (due to genetic incompatibilities or local adaptation loci), that locally reduce gene flow and generate heterogeneous patterns of genomic divergence. Here, two categories of loci are considered to take into account these variable rates of gene flow across the genome, those that are "neutrally" exchanged (occurring in proportion P) and those with reduced effective migration rates (occurring in proportion 1-P). The models are also implemented in the script model_demo.py
+2. The possibility to integrate semipermeability in the demographic models of divergence with gene flow (IM2m, AM2m) and secondary contacts (SC2m).
 
-3. An improvement of the method that search for the global optimum of the likelihood function. Optimization is performed using a Simulated Annealing (SA) optimization procedure (implemented in the inference.py module) before BFGS optimization. In practice, one hot and one cold SA optimization are performed before  one additional round of BFGS optimization. See the script script_inference_anneal2_newton.py for further details. Of course, this does not preclude to perform multiple runs to check for convergence in likelihood estimations among independent runs.
+It is also possible to include various effect of linked selection (i.e. background selection, selective sweeps and hitchhiking effects) locally reducing Ne (IM2N, SI2N, AM2N, SC2N).
+These models can be combined to integrate both the effect of linked selection and of barriers to gene flow (IM2N2m, AM2N2mn SC2N2m). 
+
+Modelling variable migration rates across the genome  is a simple way to capture the effect of genetic barriers to gene flow (due to genetic incompatibilities or local adaptation loci), that locally reduce gene flow and 
+generate heterogeneous patterns of genomic divergence. 
+
+Here, two categories of loci are considered to take into account these variable rates of gene flow across the genome, those that are "neutrally" exchanged (occurring in proportion P) 
+and those with reduced effective migration rates (occurring in proportion 1-P). 
+
+The same idea is used to define loci undergoing higher rates of drift.
+
+Details of the models are available here: `02-modifs_v2/unfolded/modeledemo_new_models.py`
+
+It is also possible to model population expansion and contraction but I ussually do not use these models to avoid overfitting.
+
+
+3. An improvement of the method that search for the global optimum of the likelihood function. 
+
+Optimization is performed using a Simulated Annealing (SA) optimization procedure (implemented in the inference.py module) before BFGS optimization. 
+
+In practice, one hot and one cold SA optimization are performed before  one additional round of BFGS optimization. 
+See the script script_inference_anneal2_newton.py for further details. 
+
+Of course, this does not preclude to perform multiple runs to check for convergence in likelihood estimations among independent runs.
 
 4. The error rate for ancestral allelic state identification in unfolded JSFS is taken into account by a misorientation parameter (O).
 
@@ -61,3 +84,30 @@ The folded (J)SFS includes all SNPs without distinguishing ancestral and derived
 
 To circumvent the loss of information and validate the accuracy of parameters estimates from the folded JSFS, our strategy was to re-integrate fixed values for parameters estimates such as Ne1, Ne2, T, Tsc in the unfolded version of the JSFS and then to re-estimate migration rate parameters (M12,M21,Me12,Me21) as well as the proportion of loci displaying a reduced migration rate (1-P). 
 
+## Details:
+
+Models are defined here:
+
+`02-modifs_v2/unfolded/modeledemo_new_models.py`
+
+and here for the folded version:
+
+`02-modifs_v2/folded/modeledemo_new_models_folded.py`
+
+The unfolded prior are in :
+
+`02-modifs_v2/unfolded/script_inference_demo_new_models.py`
+
+and  the folded priors are in:
+
+`02-modifs_v2/folded/script_inference_demo_new_models_folded.py`
+
+Then the scripts:
+
+`01-scripts/00.run_dadi_parallel_v2.sh`
+
+and `01-run_model_iteration_v2.sh`
+
+provides example for running all models in parallel. These should run easily everywhere if you have parallel module installed.
+
+I used them on the ComputeCanada super computer(s) with examples of launcher provided in `graham_cedar/` folder and `colosse` folder

@@ -24,7 +24,7 @@ def usage():
     print("# This script allow you to test different demographic models on your genomic data\n"+
         "# and will give you which one is the best fitted.\n\n"+
         "# This is an exemple of the most complete command line :\n"+
-        "# -o pathoutput -y population1 -x population2 -p 10,20,30 -f pathfsfile -m SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2NG,IM2mG,AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P -l -a -h -v\n\n"+
+        "# -o pathoutput -y population1 -x population2 -p 10,20,30 -f pathfsfile -m SI,SI2N,EM,IM,IM2N,IM2N2m,AM,AM2N,AM2N2m,PAM,SC,SC2N,SC2N2m,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P -l -a -h -v\n\n"+
         "# This is an exemple of the shortest command line:\n"+
         "# -f pathfsfile\n\n"+
         "# -h --help : Display the help you are looking at.\n"+
@@ -34,14 +34,12 @@ def usage():
         "# -o --outputname : Take the path of output file.\n"+
         "# -f --fs_file_name : Take the path of the fs file from thr parent directory.\n"+
         "# -p --grid_points : Take 3 numbers separated by a coma, for the size of grids for extrapolation.\n"+
-        "# -m --model_list : Take until 18 name of model (SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2NG,IM2mG,AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P) separated by a coma.\n"+
+        "# -m --model_list : Take until 18 name of model (SI,SI2N,EM,IM,IM2N,IM2N2m,AM,AM2N,AM2N2m,PAM,SC,SC2N,SC2N2m,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P) separated by a coma.\n"+
         "# For more information on models see docstrings in the module modeledemo.\n"+
         "# -z : mask the singletons.\n"+
         "# -l : record the final parameters in the output file.\n\n\n"
         "########################## Enjoy ###########################")
     return()
-        
-	      
 
 #Argument function
 def takearg(argv):
@@ -50,7 +48,7 @@ def takearg(argv):
 	masked = False # freq 0,1 and 1,0 masked if masked = 1
 	pts_l = None  # Grids sizes for extrapolation
 	outputname = "mis_fs_2d_optlog"
-	model_list = ["SI", "SI2N", "SIG", "SI2NG", "IM", "IMG", "IM2N", "IM2NG", "IM2mG", "AM", "AMG", "AM2N","AM2N2m", "AM2NG", "AM2mG", "AM2N2mG", "SC", "SC2N", "SCG" , "SC2N2m", "SC2NG", "SC2mG", "SC2N2mG", "IM2m", "AM2m", "SC2m"]
+	model_list = ["SI", "SI2N", "SIG", "SI2NG", "IM", "IMG", "IM2N", "IM2NG","IM2N2m", "IM2mG", "AM", "AMG", "AM2N","AM2N2m", "AM2NG", "AM2mG", "AM2N2mG", "SC", "SC2N", "SCG" , "SC2N2m", "SC2NG", "SC2mG", "SC2N2mG", "IM2m", "AM2m", "SC2m"]
 	verbose = False
 	logparam = False
 	nompop1 = "Pop1"
