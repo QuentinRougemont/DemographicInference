@@ -8,7 +8,8 @@ This pipeline requires `scipy` v0.13.3 or older versions.
 The simulated annealing implemented in  `model_demo.py` is deprecated in newer version of scipy.
 
 
-Dependencies:
+### Dependencies:
+
 `python2.7`
 
 `scipy v0.13` or older
