@@ -375,7 +375,7 @@ for namemodel in model_list:
 	if namemodel == "EM2M":
 
 		# Custom Equilibrium with 2 Migration rate model: nu1, nu2, m12, m21, me12, me21, Ts, P
-		func = modeledemo_mis_new_models.IM2M
+		func = modeledemo_mis_new_models.EM2M
 
 		for optimizationstate in opt_list:
 			print optimizationstate

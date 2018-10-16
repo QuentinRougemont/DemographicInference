@@ -215,7 +215,7 @@ def IM(params, (n1,n2), pts):
     #fsM = dadi.Numerics.reverse_array(fsO)
 
     ### Sum the two spectra in proportion O
-    fs = fsM
+    fs = fsO
     return fs
 
 def IMG(params, (n1,n2), pts): 
