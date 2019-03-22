@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! ~/py33/bin
 # -*- coding: utf-8 -*-
 
 # Library importation
@@ -240,7 +240,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [100, 100, 10,]
+			upper_bound = [100, 100, 15,]
 			lower_bound = [0.01, 0.01, 0,]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -253,7 +253,7 @@ for namemodel in model_list:
 
 	if namemodel == "SI2N":
 
-		# Custom Simple Isolation model with different recombination along the genome: nu1, nu2, Ts, nr, bf, O
+		# Custom Simple Isolation model with different recombination along the genome: nu1, nu2, Ts, nr, bf
 		func = modeledemo_new_models_folded.SI2N
 
 		for optimizationstate in opt_list:
@@ -269,7 +269,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [100, 100, 12, 1, 0.999 ]
+			upper_bound = [100, 100, 15, 1, 0.999 ]
 			lower_bound = [0.01, 0.01, 0, 0, 0.001]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -299,7 +299,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [80, 80, 100, 100, 10]
+			upper_bound = [80, 80, 100, 100, 15]
 			lower_bound = [0.01, 0.01, 0.01, 0.01, 0]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -313,7 +313,7 @@ for namemodel in model_list:
 
 	if namemodel == "SI2NG":
 
-		# Custom Simple Isolation model with different recombination along the genome: nu1, nu2, b1, b2, hrf, Ts, Q, O
+		# Custom Simple Isolation model with different recombination along the genome: nu1, nu2, b1, b2, hrf, Ts, Q
 		func = modeledemo_new_models_folded.SI2NG
 
 		for optimizationstate in opt_list:
@@ -329,7 +329,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [100, 100, 100, 100, 1, 10, 0.5]
+			upper_bound = [100, 100, 100, 100, 1, 15, 0.5]
 			lower_bound = [0.01, 0.01, 0.01, 00.1, 0.01, 0.01, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -343,7 +343,7 @@ for namemodel in model_list:
 
 	if namemodel == "IM":
 
-		# Custom Isolation with Migration model: nu1, nu2, m12, m21, Ts, O
+		# Custom Isolation with Migration model: nu1, nu2, m12, m21, Ts 
 		func = modeledemo_new_models_folded.IM
 
 		for optimizationstate in opt_list:
@@ -359,7 +359,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 40, 40, 10]
+			upper_bound = [100, 100, 60, 60, 15]
 			lower_bound = [0.01, 0.01, 0, 0, 0]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -373,7 +373,7 @@ for namemodel in model_list:
 
 	if namemodel == "IMG":
 
-		# Custom Isolation with Migration model: nu1, nu2, b1, b2, m12, m21, Ts, O
+		# Custom Isolation with Migration model: nu1, nu2, b1, b2, m12, m21, Ts
 		func = modeledemo_new_models_folded.IMG
 
 		for optimizationstate in opt_list:
@@ -389,7 +389,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 100, 100, 40, 40, 10]
+			upper_bound = [100, 100, 100, 100, 60, 60, 15]
 			lower_bound = [0.01, 0.01, 0.01, 0.01, 0, 0, 0]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -403,7 +403,7 @@ for namemodel in model_list:
 
 	if namemodel == "IM2N":
 
-		# Custom Ancient Migration with 2 Migration rate model: nu1, nu2, hrf, m12, m21, Ts, Q, O 
+		# Custom Ancient Migration with 2 Migration rate model: nu1, nu2, hrf, m12, m21, Ts, Q 
 		func = modeledemo_new_models_folded.IM2N
 
 		for optimizationstate in opt_list:
@@ -419,7 +419,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 1, 40, 40, 10, 0.5]
+			upper_bound = [100, 100, 1, 60, 60, 15, 0.5]
 			lower_bound = [0.01, 0.01, 0.1, 0, 0, 0, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -432,7 +432,7 @@ for namemodel in model_list:
 
 	if namemodel == "IM2N2m":
 
-		# Custom Ancient Migration with 2 Migration rate model and 2 population size: nu1, nu2, hrf, m12, m21, me12, me21, Ts, P, Q, O 
+		# Custom Ancient Migration with 2 Migration rate model and 2 population size: nu1, nu2, hrf, m12, m21, me12, me21, Ts, P, Q 
 		func = modeledemo_new_models_folded.IM2N2m
 
 		for optimizationstate in opt_list:
@@ -448,7 +448,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 1, 40, 40, 20, 20, 10, 0.95, 0.5]
+			upper_bound = [100, 100, 1, 60, 60, 20, 20, 15, 0.95, 0.5]
 			lower_bound = [0.01, 0.01, 0.1, 0, 0, 0, 0, 0, 0.01, 0.05]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -461,7 +461,7 @@ for namemodel in model_list:
 
 	if namemodel == "IM2NG":
 
-		# Custom Ancient Migration with 2 Migration rate model: nu1, nu2, b1, b2, hrf, m12, m21, Ts, Q, O 
+		# Custom Ancient Migration with 2 Migration rate model: nu1, nu2, b1, b2, hrf, m12, m21, Ts, Q 
 		func = modeledemo_new_models_folded.IM2NG
 
 		for optimizationstate in opt_list:
@@ -477,7 +477,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 80, 80, 1, 40, 40, 10, 0.5]
+			upper_bound = [100, 100,150,150, 1, 60, 60, 15, 0.5]
 			lower_bound = [0.01, 0.01, 0.01, 0.01, 0.1, 0, 0, 0, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -507,7 +507,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 200, 200, 40, 40, 30, 30, 10, 0.95]
+			upper_bound = [100, 100, 200, 200, 40, 40, 30, 30, 10, 0.95]
 			lower_bound = [0.01, 0.01, 0.01, 0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -521,7 +521,7 @@ for namemodel in model_list:
 
 	if (namemodel == "AM") or (namemodel == "PAM"):
 
-		# Custom Ancient Migration Model: nu1, nu2, m12, m21, Ts, Tam, O
+		# Custom Ancient Migration Model: nu1, nu2, m12, m21, Ts, Tam
 		if namemodel == "AM":
  		    func = modeledemo_new_models_folded.AM
                 else :
@@ -540,7 +540,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [200, 200, 60, 60, 10, 2]
+			upper_bound = [100, 100, 60, 60, 15, 2]
 			lower_bound = [0.01, 0.01, 0, 0, 0, 0]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -553,7 +553,7 @@ for namemodel in model_list:
 		
 	if namemodel == "AM2N":
 
-		# Custom Ancient Migration with 2 Migration rate model: nu1, nu2, hrf, m12, m21, Tam, Ts, Q, O
+		# Custom Ancient Migration with 2 Migration rate model: nu1, nu2, hrf, m12, m21, Tam, Ts, Q
 		func = modeledemo_new_models_folded.AM2N
 
 		for optimizationstate in opt_list:
@@ -569,7 +569,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [80, 80, 1, 30, 30, 10, 10, 0.5]
+			upper_bound = [100,100, 1, 60, 60, 12, 15, 0.5]
 			lower_bound = [0.01, 0.01, 0.1, 0, 0, 0, 0, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -583,7 +583,7 @@ for namemodel in model_list:
 		
 	if (namemodel == "AMG"):
 
-		# Custom Ancient Migration Model: nu1, nu2, b1, b2, m12, m21, Tam, Ts, O
+		# Custom Ancient Migration Model: nu1, nu2, b1, b2, m12, m21, Tam, Ts
 		func = modeledemo_new_models_folded.AMG
 
 		for optimizationstate in opt_list:
@@ -599,7 +599,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 100, 100, 30, 30, 10, 2]
+			upper_bound = [100, 100, 100, 100, 30, 30, 10, 2]
 			lower_bound = [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0, 0]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -629,7 +629,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [100, 100, 1, 30, 30, 20, 20, 5, 10, 0.95, 0.5]
+			upper_bound = [100, 100, 1, 60, 60, 20, 20, 10, 15, 0.95, 0.5]
 			lower_bound = [0.01, 0.01, 0.01, 0, 0, 0, 0, 0, 0, 0.05, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -703,7 +703,7 @@ for namemodel in model_list:
 
 	if namemodel == "AM2N2mG":
 
-		# Custom Ancient Migration with 2 Migration rate model:  nu1, nu2, b1, b2, hrf, m12, m21, me12, me21, Tam, Ts, P, Q, O
+		# Custom Ancient Migration with 2 Migration rate model:  nu1, nu2, b1, b2, hrf, m12, m21, me12, me21, Tam, Ts, P, Q
 		func = modeledemo_new_models_folded.AM2N2mG
 
 		for optimizationstate in opt_list:
@@ -719,7 +719,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [90, 90, 50, 50, 1, 30, 30, 20, 20, 5, 10, 0.95, 0.5]
+			upper_bound = [100, 100, 50, 50, 1, 60, 60, 20, 20, 7, 15, 0.95, 0.5]
 			lower_bound = [0.01, 0.01, 0.01, 0.01, 0.01, 0, 0, 0, 0, 0, 0, 0.05, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -734,7 +734,7 @@ for namemodel in model_list:
 
 	if (namemodel == "SC") or (namemodel == "PSC"):
 
-		# Custom Simple Secondary Contact Model: nu1, nu2, m12, m21, Ts, Tsc, O
+		# Custom Simple Secondary Contact Model: nu1, nu2, m12, m21, Ts, Tsc
 		if namemodel == "SC":
  		    func = modeledemo_new_models_folded.SC
                 else :
@@ -754,7 +754,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [200, 200, 50, 50, 10, 2]
+			upper_bound = [200, 200, 60, 60, 15, 5]
 			lower_bound = [0.01, 0.01, 0, 0, 0, 0]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -768,7 +768,7 @@ for namemodel in model_list:
 		
 	if namemodel == "SCG":
 
-		# Custom Secondary contact with exponential growth model: nu1, nu2, b1, b2, m12, m21, Ts, Tsc, O
+		# Custom Secondary contact with exponential growth model: nu1, nu2, b1, b2, m12, m21, Ts, Tsc
 		func = modeledemo_new_models_folded.SCG
 
 		for optimizationstate in opt_list:
@@ -784,7 +784,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 150, 150, 30, 30, 10, 2]
+			upper_bound = [100, 100, 150, 150, 60, 60, 15, 5]
 			lower_bound = [0.01, 0.01, 0, 0, 0, 0, 0, 0]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -798,7 +798,7 @@ for namemodel in model_list:
 
 	if namemodel == "SC2N":
 
-		# Custom Simple Secondary Contact Model: nu1, nu2, hrf, m12, m21, Ts, Tsc, Q, O
+		# Custom Simple Secondary Contact Model: nu1, nu2, hrf, m12, m21, Ts, Tsc, Q
 		func = modeledemo_new_models_folded.SC2N
 
 		for optimizationstate in opt_list:
@@ -814,7 +814,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 1, 80, 80, 10, 2, 0.5]
+			upper_bound = [100, 100, 1, 60, 60, 15, 5, 0.5]
 			lower_bound = [0.01, 0.01, 0.1, 0, 0, 0, 0, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -828,7 +828,7 @@ for namemodel in model_list:
 
 	if namemodel == "SC2N2m":
 
-		# Custom Simple Secondary Contact Model: nu1, nu2, hrf, m12, m21, me12, me21, Ts, Tsc, P, Q, O
+		# Custom Simple Secondary Contact Model: nu1, nu2, hrf, m12, m21, me12, me21, Ts, Tsc, P, Q
 		func = modeledemo_new_models_folded.SC2N2m
 
 		for optimizationstate in opt_list:
@@ -845,7 +845,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 1, 80, 80, 10, 10, 10, 2, 0.95, 0.5]
+			upper_bound = [100, 100, 1, 60, 60, 30, 30, 15, 5, 0.95, 0.5]
 			lower_bound = [0.01, 0.01, 0.1, 0, 0, 0, 0, 0, 0, 0.5, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -859,7 +859,7 @@ for namemodel in model_list:
 
 	if namemodel == "SC2NG":
 
-		# Custom Simple Secondary Contact Model: nu1, nu2, b1, b2, hrf, m12, m21, Ts, Tsc, Q, O
+		# Custom Simple Secondary Contact Model: nu1, nu2, b1, b2, hrf, m12, m21, Ts, Tsc, Q
 		func = modeledemo_new_models_folded.SC2NG
 		
 		for optimizationstate in opt_list:
@@ -876,8 +876,8 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 150, 150, 1, 80, 80, 10, 8, 0.5, 0.99]
-			lower_bound = [0.01, 0.01, 0.01, 0.01, 0.1, 0, 0, 0, 0, 0.01, 0.01]
+			upper_bound = [100, 100, 150, 150, 1, 60, 60, 15, 8, 0.5]
+			lower_bound = [0.01, 0.01, 0.01, 0.01, 0.1, 0, 0, 0, 0, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
 								  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
@@ -890,7 +890,7 @@ for namemodel in model_list:
 
 	if namemodel == "SC2mG":
 
-		# Custom Secondary contact with 2 Migration rate model: nu1, nu2, b1, b2, m12, m21, me12, me21, Ts, Tsc, P, O
+		# Custom Secondary contact with 2 Migration rate model: nu1, nu2, b1, b2, m12, m21, me12, me21, Ts, Tsc, P
 		func = modeledemo_new_models_folded.SC2mG
 
 		for optimizationstate in opt_list:
@@ -906,7 +906,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 150, 150, 80, 80, 10, 10, 10, 2, 0.95]
+			upper_bound = [100, 100, 150, 150, 60, 60, 10, 10, 15, 5, 0.95]
 			lower_bound = [0.01, 0.01, 0.01, 0.01, 0, 0, 0, 0, 0, 0, 0.05]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -920,7 +920,7 @@ for namemodel in model_list:
 
 	if namemodel == "SC2N2mG":
 
-		# Custom Simple Secondary Contact Model: nu1, nu2, b1, b2, hrf, m12, m21, me12, me21, Ts, Tsc, P, Q, O
+		# Custom Simple Secondary Contact Model: nu1, nu2, b1, b2, hrf, m12, m21, me12, me21, Ts, Tsc, P, Q
 		func = modeledemo_new_models_folded.SC2N2mG
 
 		for optimizationstate in opt_list:
@@ -937,7 +937,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [120, 120, 200, 200, 1, 80, 80, 10, 10, 10, 5, 0.95, 0.5]
+			upper_bound = [100, 100, 200, 200, 1, 60, 60, 10, 10, 15, 7, 0.95, 0.5]
 			lower_bound = [0.01, 0.01, 0.1, 0.01, 0.01, 0, 0, 0, 0, 0, 0, 0.5, 0.01]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -951,7 +951,7 @@ for namemodel in model_list:
 
 	if namemodel == "IM2m":
 
-		# Custom Isolation with 2 Migration rate model: nu1, nu2, m12, m21, me12, me21, Ts, P, O
+		# Custom Isolation with 2 Migration rate model: nu1, nu2, m12, m21, me12, me21, Ts, P
 		func = modeledemo_new_models_folded.IM2m
 
 		for optimizationstate in opt_list:
@@ -967,7 +967,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [250, 250, 150, 150, 45, 45, 10, 0.95]
+			upper_bound = [250, 250, 150, 150, 30, 30, 15, 0.95]
 			lower_bound = [0.01, 0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -980,7 +980,7 @@ for namemodel in model_list:
 
 	if namemodel == "AM2m":
 
-		# Custom Ancient Migration with 2 Migration rate model: nu1, nu2, m12, m21, me12, me21, Ts, Tam, P, O
+		# Custom Ancient Migration with 2 Migration rate model: nu1, nu2, m12, m21, me12, me21, Ts, Tam, P
 		func = modeledemo_new_models_folded.AM2m
 
 		for optimizationstate in opt_list:
@@ -996,7 +996,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [250, 250, 150, 150, 25, 25, 10, 2, 0.95]
+			upper_bound = [250, 250, 150, 150, 30, 30, 15, 5, 0.95]
 			lower_bound = [0.01, 0.01, 0, 0, 0, 0, 0, 0, 0.05]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
@@ -1009,7 +1009,7 @@ for namemodel in model_list:
 
 	if namemodel == "SC2m":
 
-		# Custom Secondary contact with 2 Migration rate model: nu1, nu2, m12, m21, me12, me21, Ts, Tsc, P, O
+		# Custom Secondary contact with 2 Migration rate model: nu1, nu2, m12, m21, me12, me21, Ts, Tsc, P
 		func = modeledemo_new_models_folded.SC2m
 
 		for optimizationstate in opt_list:
@@ -1025,7 +1025,7 @@ for namemodel in model_list:
 			# The upper_bound array is for use in optimization. Occasionally the optimizer
 			# will try wacky parameter values. We in particular want to exclude values with
 			# very long times, as they will take a long time to evaluate.
-			upper_bound = [250, 250, 150, 150, 30, 30, 10, 2, 0.95]
+			upper_bound = [250, 250, 150, 150, 30, 30, 15, 7, 0.95]
 			lower_bound = [0.01, 0.01, 0, 0, 0, 0, 0, 0, 0.05]
 
 			done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 

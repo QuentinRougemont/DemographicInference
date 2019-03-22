@@ -94,7 +94,9 @@ and here for the folded version:
 
 `02-modifs_v2/folded/modeledemo_new_models_folded.py`
 
-The unfolded prior are in :
+The unfolded prior are in : 
+
+please check the prior before running the models !!!  
 
 `02-modifs_v2/unfolded/script_inference_demo_new_models.py`
 

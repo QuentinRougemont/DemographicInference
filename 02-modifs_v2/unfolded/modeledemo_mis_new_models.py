@@ -72,7 +72,7 @@ def SI2N(params, (n1,n2), pts):
     fsnrM = dadi.Numerics.reverse_array(fsnrO)
     
     
-	# Spectrum of recombining regions
+    # Spectrum of recombining regions
     # phi for the equilibrium ancestral population
     phir = dadi.PhiManip.phi_1D(xx)
     # Now do the divergence event
@@ -87,7 +87,6 @@ def SI2N(params, (n1,n2), pts):
 
     ### Sum the two spectra in proportion O
     fs= O*(nr*fsnrO + (1-nr)*fsrO) + (1-O) *(nr*fsnrM + (1-nr)*fsrM)
-
     return fs
 
 
@@ -774,7 +773,7 @@ def AM2mG(params, (n1,n2), pts):
     # We start the population reduction after the split and set the migration rates to zero
     bnu1_func = lambda t: nu1 * b1**(t/Ts)
     bnu2_func = lambda t: nu2 * b2**(t/Ts)
-    phiI = dadi.Integration.two_pops(phiI, xx, Ts, bnu1_func, bnu2_func, m12=me12, m21=me21)
+    phiI = dadi.Integration.two_pops(phiI, xx, Ts, bnu1_func, bnu2_func, m12=0, m21=0)
     ## calculate the spectrum.
     # oriented
     fsIO = dadi.Spectrum.from_phi(phiI, (n1,n2), (xx,xx))
@@ -1343,20 +1342,6 @@ def SC2N2mG(params, (n1,n2), pts):
 def IM2m(params, (n1,n2), pts):
     nu1, nu2, m12, m21, me12, me21, Ts, P, O = params
     
-    """
-    nu1 = 1.6563
-    nu2 = 0.7078
-    m12 = 9.9748
-    m21 = 0.2344
-    me12 = 0.3558
-    me21 = 1.3781
-    Ts = 8.2590
-    P = 0.8261
-    O = 0.9312
-    n1 = 26
-    n2 = 26
-    pts = 5
-    """
     """
     Model with migration during the divergence with two type of migration.
 

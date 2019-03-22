@@ -73,4 +73,3 @@ awk '{print $5, $5, $4, $5, $6, $7, $8, $12,  $14, $16, $1, $2 }' "$folder"/batc
 cd "$folder"/
 Rscript ../01-scripts/utility_scripts/01.prepare.spectrum.R 
 #To do: replace Rscript by a single bash script
-exit

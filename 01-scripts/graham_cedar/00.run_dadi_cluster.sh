@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --account=your_account
-#SBATCH --time=08:45:00
+#SBATCH --time=99:99:99
 #SBATCH --job-name=abc
 #SBATCH --output=abc-%J.out
 ##SBATCH --array=1-33%33
@@ -12,8 +12,10 @@
 ##PBS -l nodes=1:ppn=8
 ##SBATCH --mail-type=EA 
 
-module load python/2.7.14
-source /home/path_to_activate_local_env/activate
+#eventually load python module
+#module load python/2.7.14
+#activate your environment if necessary
+#source /home/path_to_activate_local_env/activate
 #source temp/bin/activate
 # Move to directory where job was submitted
 cd $SLURM_SUBMIT_DIR

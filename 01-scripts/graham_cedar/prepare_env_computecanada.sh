@@ -2,8 +2,6 @@
 
 #example of creation of an environment containings old scipy packages
 
-#cd $HOME
-#cd DemographicInference
 #module load gcc/4.8.5
 module load python/2.7.14
 mkdir temp

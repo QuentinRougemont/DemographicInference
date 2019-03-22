@@ -7,7 +7,7 @@ spectrum=read.table("spectrum.tmp",
                     "n_pop2", "freq_pop2","freq_pop2",
                     "scaffold","Position"))
 
-MAJ_pop1 <-  round(spectrum[,3]*spectrum[,5],0)
+MAJ_pop1 <- round(spectrum[,3]*spectrum[,5],0)
 MIN_pop1 <- round(spectrum[,3]*spectrum[,7],0)
 MAJ_pop2 <- round(spectrum[,8]*spectrum[,9],0)
 MIN_pop2 <- round(spectrum[,8]*spectrum[,10],0)

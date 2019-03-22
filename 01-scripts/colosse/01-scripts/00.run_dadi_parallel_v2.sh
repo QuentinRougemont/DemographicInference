@@ -11,6 +11,5 @@ mkdir "$FOLDER" 2>/dev/null
 cd "$FOLDER"
 cp ../03-data/"$fs" .
 
-nrep=1
-NUM_CPUS=1
-seq $nrep |parallel -j "$NUM_CPUS" ../01-scripts/01-run_model_iteration_v2.sh {} "$fs" "$model" "$folded" "$grid_size"
+NUM_CPUS=8
+seq $NUM_CPUS |parallel -j "$NUM_CPUS" ../01-scripts/01-run_model_iteration_v2.sh {} "$fs" "$model" "$folded" "$grid_size"
