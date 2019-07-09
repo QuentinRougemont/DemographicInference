@@ -18,7 +18,7 @@ fst = fs.Fst()
 #print(f'number of s = {s}')
 #print(f'differentiation - Fst = {fst}') 
 
-dadi.Plotting.plot_single_2d_sfs(fs, vmin=0.01)
+dadi.Plotting.plot_single_2d_sfs(fs, vmin=0.1)
 
 fs.to_file("pop1_pop2_NP_" + str(proj) + ".fs")
 
@@ -26,6 +26,7 @@ fs . mask [0 ,1] = True
 fs . mask [1 ,0] = True
 s1 = fs.S()
 fst1 = fs.Fst()
+fs.to_file("pop1_pop2_NP_masked" + str(proj) + ".fs")
 
 print 'number of site = {0:.5f}.'.format(s)
 print 'differentiation (Fst) = {0:.5f}.'.format(fst)
