@@ -14,7 +14,7 @@ import pylab
 import numpy
 from numpy import array
 import dadi
-import modeledemo_new_models
+#import modeledemo_new_models
 import modeledemo_mis_new_models
 #from matplotlib import pyplot as plt
 
@@ -154,8 +154,8 @@ def callmodel(func, data, output_file, modeldemo, ll_opt_dic, nbparam_dic,
     ll_opt = dadi.Inference.ll_multinom(model, data)
     theta = dadi.Inference.optimal_sfs_scaling(model, data)
     AIC = 2*len(params)-2*ll_opt
-        ll_opt_dic[modeldemo] = ll_opt
-        nbparam_dic[modeldemo] = len(params)
+    ll_opt_dic[modeldemo] = ll_opt
+    nbparam_dic[modeldemo] = len(params)
 
     # Print results
     print 'Optimized parameters', repr(popt)
@@ -167,7 +167,7 @@ def callmodel(func, data, output_file, modeldemo, ll_opt_dic, nbparam_dic,
     output_file.write(line)
 
     # Plot a comparison of the resulting fs with the data.
-        if optimizationstate == "BFGS" :
+    if optimizationstate == "BFGS" :
         import pylab
         pylab.figure()
         dadi.Plotting.plot_2d_comp_multinom(model, data, vmin=0.1, resid_range=3,
@@ -524,7 +524,7 @@ for namemodel in model_list:
         # Custom Ancient Migration Model: nu1, nu2, m12, m21, Ts, Tam, O
         if namemodel == "AM":
             func = modeledemo_mis_new_models.AM
-                else :
+        else :
             func = modeledemo_mis_new_models.PAM
 
         for optimizationstate in opt_list:
@@ -737,7 +737,7 @@ for namemodel in model_list:
         # Custom Simple Secondary Contact Model: nu1, nu2, m12, m21, Ts, Tsc, O
         if namemodel == "SC":
             func = modeledemo_mis_new_models.SC
-                else :
+        else :
             func = modeledemo_mis_new_models.PSC
         
         for optimizationstate in opt_list:
@@ -952,7 +952,7 @@ for namemodel in model_list:
     if namemodel == "PIM2m":
 
         # Custom Periodic Isol. w. Migration with 2 Migration rate model: nu1, nu2, mA12, mA21, mAe12, mAe21, m12, m21, me12, me21, Ts, Tam, Tsc, P, O
-        func = model_for_sean.PIM2m
+        func = modeledemo_mis_new_models.PIM2m
 
         for optimizationstate in opt_list:
             print optimizationstate
@@ -978,7 +978,6 @@ for namemodel in model_list:
                                   verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
                                   schedule= "cauchy")
         if done: print(("\n" + namemodel + " : done\n"))
-
 
     if namemodel == "IM2m":
 
