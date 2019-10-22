@@ -48,7 +48,7 @@ def takearg(argv):
     masked = False # freq 0,1 and 1,0 masked if masked = 1
     pts_l = None  # Grids sizes for extrapolation
     outputname = "mis_fs_2d_optlog"
-    model_list = ["SI", "SI2N", "SIG", "SI2NG", "IM", "IMG", "IM2N", "IM2NG","IM2N2m", "IM2mG", "AM", "AMG", "AM2N","AM2N2m", "AM2NG", "AM2mG", "AM2N2mG", "SC", "SC2N", "SCG" , "SC2N2m", "SC2NG", "SC2mG", "SC2N2mG", "IM2m", "AM2m", "SC2m"]
+    model_list = ["SI", "SI2N", "SIG", "SI2NG", "IM", "IMG", "IM2N", "IM2NG","IM2N2m", "IM2mG", "AM", "AMG", "AM2N","AM2N2m", "AM2NG", "AM2mG", "AM2N2mG", "SC", "SC2N", "SCG" , "SC2N2m", "SC2NG", "SC2mG", "SC2N2mG", "IM2m", "AM2m", "SC2m","PIM2m"]
     verbose = False
     logparam = False
     nompop1 = "Pop1"
@@ -941,6 +941,37 @@ for namemodel in model_list:
             lower_bound = [0.01, 0.01, 0.1, 0.01, 0.01, 0, 0, 0, 0, 0, 0, 0.5, 0.01, 0.01]
 
             done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
+                                  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
+                                  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
+                                  outputname=outputname + "/" + outputname, 
+                                  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
+                                  schedule= "cauchy")
+        if done: print(("\n" + namemodel + " : done\n"))
+        
+
+    if namemodel == "PIM2m":
+
+        # Custom Periodic Isol. w. Migration with 2 Migration rate model: nu1, nu2, mA12, mA21, mAe12, mAe21, m12, m21, me12, me21, Ts, Tam, Tsc, P, O
+        func = model_for_sean.PIM2m
+
+        for optimizationstate in opt_list:
+            print optimizationstate
+
+            if optimizationstate == "anneal_hot":
+            #nu1, nu2, mA12, mA21, meA12, meA21, m12, m21, me12, me21, Ts, Tam, Tsc, P, O
+                params = (1, 1, 5, 5, 0.5, 0.5, 5, 5, 0.5, 0.5, 1, 0.3, 0.1, 0.5, 0.8)
+            elif optimizationstate == "anneal_cold":
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13], popt[14])
+            else :
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13], popt[14])
+
+            # The upper_bound array is for use in optimization. Occasionally the optimizer
+            # will try wacky parameter values. We in particular want to exclude values with
+            # very long times, as they will take a long time to evaluate.
+            upper_bound = [100, 100, 50, 50, 10, 10, 50, 50, 10, 10, 15, 10, 5, 0.95, 0.99]
+            lower_bound = [0.01, 0.01, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.05, 0.01]
+
+            done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
                                   nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
                                   upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
                                   outputname=outputname + "/" + outputname, 
