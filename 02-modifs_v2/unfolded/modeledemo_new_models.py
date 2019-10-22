@@ -71,8 +71,7 @@ def SI2N(params, (n1,n2), pts):
     # mis-oriented
     fsnrM = dadi.Numerics.reverse_array(fsnrO)
     
-    
-	# Spectrum of recombining regions
+    # Spectrum of recombining regions
     # phi for the equilibrium ancestral population
     phir = dadi.PhiManip.phi_1D(xx)
     # Now do the divergence event
@@ -945,7 +944,7 @@ def AM2N2mG(params, (n1,n2), pts):
     fsnrO = dadi.Spectrum.from_phi(phinr, (n1,n2), (xx,xx))
     # mis-oriented
     fsnrM = dadi.Numerics.reverse_array(fsnrO)
-	
+    
     #### Spectrum of low-recombining regions
     # phi for the equilibrium ancestral population
     philr = dadi.PhiManip.phi_1D(xx)
@@ -964,7 +963,7 @@ def AM2N2mG(params, (n1,n2), pts):
     # mis-oriented
     fslrM = dadi.Numerics.reverse_array(fslrO)
  
- 	#### Sum the spectra
+    #### Sum the spectra
     fs = O*(P*fsNO + (1-P)*fsIO + (1-Q)*fsnrO + Q*fslrO) + (1-O)*(P*fsNM + (1-P)*fsIM + (1-Q)*fsnrM + Q*fslrM)
     return fs
 
@@ -1426,20 +1425,6 @@ def SC2N2mG(params, (n1,n2), pts):
 def IM2m(params, (n1,n2), pts):
     nu1, nu2, m12, m21, me12, me21, Ts, P, O = params
     
-    """
-    nu1 = 1.6563
-    nu2 = 0.7078
-    m12 = 9.9748
-    m21 = 0.2344
-    me12 = 0.3558
-    me21 = 1.3781
-    Ts = 8.2590
-    P = 0.8261
-    O = 0.9312
-    n1 = 26
-    n2 = 26
-    pts = 5
-    """
     """
     Model with migration during the divergence with two type of migration.
 
