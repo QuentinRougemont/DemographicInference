@@ -1574,7 +1574,7 @@ def PIM2m(params, (n1,n2), pts):
     return fs
 
 def PSC2m(params, (n1,n2), pts):
-    nu1, nu2, mA12, mA21, meA12, meA21, m12, m21, me12, me21, Ts, Tsc1 Tam, Tsc, P, O = params
+    nu1, nu2, mA12, mA21, meA12, meA21, m12, m21, me12, me21, Ts, Tsc1, Tam, Tsc, P, O = params
 
     """
     Model of semi permeability with split, ancient migration with 2 migration rates
