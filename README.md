@@ -33,6 +33,15 @@ Tine M, Kuhl H, Gagnaire P-A et al. (2014) European sea bass genome and its vari
 
 Rougemont, Q., Gagnaire, P.-A., Perrier, C., Genthon, C., Besnard, A.-L., Launey, S. and Evanno, G. (2016), Inferring the demographic history underlying parallel genomic divergence among pairs of parasitic and non-parasitic lamprey ecotypes. Mol Ecol. Accepted Author Manuscript. doi:10.1111/mec.13664
 
+Hugo Cayuela, Quentin Rougemont, Martin Laporte, Claire Mérot, Eric Normandeau, Yann Dorant, Ole K. Tørresen, Siv Nam Khang Hoff, Sissel Jentoft, Pascal Sirois, Martin Castonguay, Teunis Jansen, Kim Praebel, Marie Clément, Louis Bernatchez
+Standing genetic variation and chromosomal rearrangements facilitate local adaptation in a marine fish
+bioRxiv 782201; doi: https://doi.org/10.1101/782201  
+
+Quentin Rougemont, Jean-Sébastien Moore, Thibault Leroy, Eric Normandeau, Eric B. Rondeau, Ruth E. Withler, Donald M. Van Doornik, Penelope A. Crane, Kerry A. Naish, John Carlos Garza, Terry D. Beacham, Ben F. Koop, Louis Bernatchez 
+Demographic history, linked selection, and recombination shape the genomic landscape of a broadly distributed Pacific salmon
+bioRxiv 732750; doi: https://doi.org/10.1101/732750 
+
+
 See also: https://popgensealab.wordpress.com/dadi-inference/
 
 ### Dadi and Its modification:
@@ -113,3 +122,6 @@ and `01-run_model_iteration_v2.sh`
 provides example for running all models in parallel. These should run easily everywhere if you have parallel module installed.
 
 I used them on the ComputeCanada super computer(s) with examples of launcher provided in `graham_cedar/` folder and `colosse` folder
+
+## To DO:  
+add PSC, PIM,  PSC2N, PIM2N, PSC2N2m, PIM2N2m 
