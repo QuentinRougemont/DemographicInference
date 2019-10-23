@@ -47,7 +47,7 @@ def takearg(argv):
     masked = False # freq 0,1 and 1,0 masked if masked = 1
     pts_l = None  # Grids sizes for extrapolation
     outputname = "mis_fs_2d_optlog"
-    model_list = ["SI", "SI2N", "SIG", "SI2NG", "IM", "IMG", "IM2N", "IM2N2m","IM2NG", "IM2mG", "AM", "AMG", "AM2N","AM2N2m", "AM2NG", "AM2mG", "AM2N2mG", "SC", "SC2N", "SCG" , "SC2N2m", "SC2NG", "SC2mG", "SC2N2mG", "IM2m", "AM2m", "SC2m", "PIM2m", "PSC2m"]
+    model_list = ["SI", "SI2N", "SIG", "SI2NG", "IM", "IMG", "IM2N", "IM2N2m","IM2NG", "IM2mG", "AM", "AMG", "AM2N","AM2N2m", "AM2NG", "AM2mG", "AM2N2mG", "SC", "SC2N", "SCG" , "SC2N2m", "SC2NG", "SC2mG", "SC2N2mG", "IM2m", "AM2m", "SC2m", "PIM2m", "PIM2N","PSC2m","PSC2N"]
     verbose = False
     logparam = False
     nompop1 = "Pop1"

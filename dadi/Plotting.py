@@ -383,7 +383,7 @@ def plot_2d_comp_Poisson(model, data, vmin=None, vmax=None,
     ax.set_title('residuals')
     ax.set_yticks([])
     if saveplot:
-        nomplot=nomplot + ".png"    
+        nomplot=nomplot + ".pdf"    
         pylab.savefig(nomplot)
     if showplot:
         pylab.show()
