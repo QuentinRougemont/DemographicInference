@@ -5,9 +5,9 @@ fs=$2     #dataset fs stored in 03-data
 model=$3  #model name
 folded=$4 #either "folded" or "unfolded"
 grid_size=$5 #number of grid points (n pts) in dadi will be n,n+10,n+20
-grid_size=$(( grid_size * 2 ))
-grid_size2=$(( grid_size + 10 ))
-grid_size3=$(( grid_size + 20 ))
+grid_size=$(( grid_size   ))
+grid_size2=$(( grid_size + 20 ))
+grid_size3=$(( grid_size + 30 ))
 
 if [[ -z "$fs" ]]
 then
@@ -37,9 +37,8 @@ then
 		-l -v  \
 		&>> ./10-log/"$model"_"$id".log;
 else
-    python ./02-modifs_v2/unfolded/script_inference_demo_new_models.py \
+	python  02-modifs_v2/pang_models.py \
 	    -o "$model"_$id \
-	    -y pop1 -x pop2 \
 	    -p $grid_size,$grid_size2,$grid_size3  \
 	    -f "$fs" \
 	    -m "$model" \
