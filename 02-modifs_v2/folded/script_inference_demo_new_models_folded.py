@@ -23,7 +23,7 @@ def usage():
     print("# This script allow you to test different demographic models on your genomic data\n"+
         "# and will give you which one is the best fitted.\n\n"+
         "# This is an exemple of the most complete command line :\n"+
-        "# -o pathoutput -y population1 -x population2 -p 10,20,30 -f pathfsfile -m SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2N2m,IM2NG,IM2mG,AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P -l -a -h -v\n\n"+
+        "# -o pathoutput -y population1 -x population2 -p 10,20,30 -f pathfsfile -m SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2N2m,IM2NG,IM2mG,IM2N2mG, AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P -l -a -h -v\n\n"+
         "# This is an exemple of the shortest command line:\n"+
         "# -f pathfsfile\n\n"+
         "# -h --help : Display the help you are looking at.\n"+
@@ -33,7 +33,7 @@ def usage():
         "# -o --outputname : Take the path of output file.\n"+
         "# -f --fs_file_name : Take the path of the fs file from thr parent directory.\n"+
         "# -p --grid_points : Take 3 numbers separated by a coma, for the size of grids for extrapolation.\n"+
-        "# -m --model_list : Take until 18 name of model (SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2N2m, IM2NG,IM2mG,AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P) separated by a coma.\n"+
+        "# -m --model_list : Take until 18 name of model (SI,SI2N,SIG,SI2NG,EM,IM,IMG,IM2N,IM2N2m, IM2NG,IM2mG,IM2N2mG, AM,AMG,AM2N,AM2N2m,AM2NG,AM2mG,AM2N2mG,PAM,SC,SC2N,SCG,SC2N2m,SC2NG,SC2mG,SC2N2mG,PSC,EM2M,IM2m,AM2m,SC2m,EM2M2P,IM2M2P,AM2M2P,PAM2M2P,SC2M2P,PSC2M2P) separated by a coma.\n"+
         "# For more information on models see docstrings in the module modeledemo.\n"+
         "# -z : mask the singletons.\n"+
         "# -l : record the final parameters in the output file.\n\n\n"
@@ -47,7 +47,7 @@ def takearg(argv):
     masked = False # freq 0,1 and 1,0 masked if masked = 1
     pts_l = None  # Grids sizes for extrapolation
     outputname = "mis_fs_2d_optlog"
-    model_list = ["SI", "SI2N", "SIG", "SI2NG", "IM", "IMG", "IM2N", "IM2N2m","IM2NG", "IM2mG", "AM", "AMG", "AM2N","AM2N2m", "AM2NG", "AM2mG", "AM2N2mG", "SC", "SC2N", "SCG" , "SC2N2m", "SC2NG", "SC2mG", "SC2N2mG", "IM2m", "AM2m", "SC2m", "PIM2m", "PIM2N","PSC2m","PSC2N"]
+    model_list = ["SI", "SI2N", "SIG", "SI2NG", "IM", "IMG", "IM2N", "IM2N2m","IM2NG", "IM2mG", "IM2N2mG", "AM", "AMG", "AM2N","AM2N2m", "AM2NG", "AM2mG", "AM2N2mG", "SC", "SC2N", "SCG" , "SC2N2m", "SC2NG", "SC2mG", "SC2N2mG", "IM2m", "AM2m", "SC2m", "PIM2m", "PIM2N","PSC2m","PSC2N"]
     verbose = False
     logparam = False
     nompop1 = "Pop1"
@@ -152,8 +152,8 @@ def callmodel(func, data, output_file, modeldemo, ll_opt_dic, nbparam_dic,
     ll_opt = dadi.Inference.ll_multinom(model, data)
     theta = dadi.Inference.optimal_sfs_scaling(model, data)
     AIC = 2*len(params)-2*ll_opt
-        ll_opt_dic[modeldemo] = ll_opt
-        nbparam_dic[modeldemo] = len(params)
+    ll_opt_dic[modeldemo] = ll_opt
+    nbparam_dic[modeldemo] = len(params)
 
     # Print results
     print 'Optimized parameters', repr(popt)
@@ -165,7 +165,7 @@ def callmodel(func, data, output_file, modeldemo, ll_opt_dic, nbparam_dic,
     output_file.write(line)
 
     # Plot a comparison of the resulting fs with the data.
-        if optimizationstate == "BFGS" :
+    if optimizationstate == "BFGS" :
         import pylab
         pylab.figure()
         dadi.Plotting.plot_2d_comp_multinom(model, data, vmin=0.1, resid_range=3,
@@ -456,6 +456,35 @@ for namemodel in model_list:
                                   schedule= "cauchy")
         if done: print(("\n" + namemodel + " : done\n"))
 
+    if namemodel == "IM2N2mG":
+
+        # Custom Ancient Migration with 2 Migration rate model and 2 population size: nu1, nu2, b1, b2, hrf, m12, m21, me12, me21, Ts, P, Q 
+        func = modeledemo_new_models_folded.IM2N2m
+
+        for optimizationstate in opt_list:
+            print optimizationstate
+
+            if optimizationstate == "anneal_hot":       
+                params = (1, 1, 1, 1, 0.8, 5, 5, 0.5, 0.5, 1, 0.5, 0.1)
+            elif optimizationstate == "anneal_cold":
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11])
+            else :
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11])
+
+            # The upper_bound array is for use in optimization. Occasionally the optimizer
+            # will try wacky parameter values. We in particular want to exclude values with
+            # very long times, as they will take a long time to evaluate.
+            upper_bound = [100, 100, 150,150,1, 60, 60, 20, 20, 15, 0.95, 0.5]
+            lower_bound = [0.01, 0.01, 0.01, 0.01, 0.1, 0, 0, 0, 0, 0, 0.01, 0.05]
+
+            done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic, 
+                                  nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
+                                  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
+                                  outputname=outputname + "/" + outputname, 
+                                  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
+                                  schedule= "cauchy")
+        if done: print(("\n" + namemodel + " : done\n"))
+
     if namemodel == "IM2NG":
 
         # Custom Ancient Migration with 2 Migration rate model: nu1, nu2, b1, b2, hrf, m12, m21, Ts, Q 
@@ -521,7 +550,7 @@ for namemodel in model_list:
         # Custom Ancient Migration Model: nu1, nu2, m12, m21, Ts, Tam
         if namemodel == "AM":
             func = modeledemo_new_models_folded.AM
-                else :
+        else :
             func = modeledemo_new_models_folded.PAM
 
         for optimizationstate in opt_list:
@@ -734,7 +763,7 @@ for namemodel in model_list:
         # Custom Simple Secondary Contact Model: nu1, nu2, m12, m21, Ts, Tsc
         if namemodel == "SC":
             func = modeledemo_new_models_folded.SC
-                else :
+        else :
             func = modeledemo_new_models_folded.PSC
         
         for optimizationstate in opt_list:

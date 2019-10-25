@@ -153,6 +153,163 @@ def SI2NG(params, (n1,n2), pts):
     fs= ((1-Q)*fsnr + Q*fslr) 
     return fs
 
+def PAN(params, (n1), pts): 
+    
+    """
+    Panmictic model
+
+    nu1: Size of population 1
+    n1 Size of fs to generate.
+    pts: Number of points to use in grid for evaluation.
+    """
+    nu, T = params
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+    # phi for the equilibrium panmictic population
+    phi = dadi.PhiManip.phi_1D(xx)
+    phi = dadi.Integration.one_pop(phi, xx, T, nu)
+    ## Finally, calculate the spectrum.
+    fs = dadi.Spectrum.from_phi(phi, n1, (xx,))
+    return fs
+
+def PANG(params, (n1), pts): 
+    nu1, T, = params
+    """
+    Model with exponential growth some tme ago
+
+    nu1: Ratio of contemporary to ancient population size
+    T: Time in the past at which growth began (in units of 2*Na 
+       generations) 
+    n1: Number of samples in resulting Spectrum
+    pts: Number of points to use in grid for evaluation.
+    """
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+    phi = dadi.PhiManip.phi_1D(xx)
+    
+    # phi for the equilibrium ancestral population
+    # We start the population size change after the split and set the migration rates to m12 and m21
+    bnu1_func = lambda t: numpy.exp(numpy.log(nu1) * t/T)
+    #bnu1_func = lambda t: nu1 * b1**(t/T)
+    phi = dadi.Integration.one_pop(phi, xx, T, bnu1_func)
+    ###
+    ## Finally, calculate the spectrum.
+    fs = dadi.Spectrum.from_phi(phi, (n1), (xx,))
+    return fs
+
+def PANG2N(params, (n1), pts): 
+    nu1, hrf, T, Q = params
+    """
+    Model with exponential growth some tme ago
+
+    ns = (n1,)
+    nu1: Ratio of contemporary to ancient population size
+    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of background selection and selective sweep effects
+    T: Time in the past at which growth began (in units of 2*Na 
+       generations) 
+    Q: The proportion of the genome with a reduced effective size due to selection at linked sites
+    n1,n2: Size of fs to generate.
+    pts: Number of points to use in grid for evaluation.
+    """
+
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+
+    #### Calculate the pectrum in normally-recombining regions
+    # phi for the equilibrium ancestral population
+    phinr = dadi.PhiManip.phi_1D(xx)
+    
+    # phi for the equilibrium ancestral population
+    # We start the population size change after the split and set the migration rates to m12 and m21
+    #bnu1_func = lambda t: nu1 * b1**(t/T)
+    bnu1_func = lambda t: numpy.exp(numpy.log(nu1) * t/T)
+    phinr = dadi.Integration.one_pop(phinr, xx,T, bnu1_func, )
+    ###
+    ## Finally, calculate the spectrum.
+    fsnr = dadi.Spectrum.from_phi(phinr, (n1), (xx,))
+
+    #### Calculate the pectrum in normally-recombining regions
+    # phi for the equilibrium ancestral population
+    philr = dadi.PhiManip.phi_1D(xx)
+    
+    # phi for the equilibrium ancestral population
+    # We start the population size change after the split and set the migration rates to m12 and m21
+    bnu1_func_hrf = lambda t: (numpy.exp(numpy.log(nu1) * t/T) ) * hrf
+    #bnu1_func_hrf = lambda t: (nu1 * b1**(t/T) )* hrf
+    philr = dadi.Integration.one_pop(philr , xx,T, bnu1_func_hrf, )
+    ###
+    ## Finally, calculate the spectrum.
+    fslr = dadi.Spectrum.from_phi(philr, (n1), (xx,))
+
+    ### Sum the two spectra in proportion Q
+    fs= ((1-Q)*fsnr + Q*fslr) 
+    return fs
+
+def PANGb(params, ns, pts): 
+    nuB,nuF,T = params
+    """
+    Instantanous size change followed by exponential growth. #=bottlegrowth
+
+    params = (nu,T)
+    ns = (n1,)
+    nu1: Ratio of contemporary to ancient population size
+    T: Time in the past at which growth began (in units of 2*Na 
+       generations) 
+    pts: Number of points to use in grid for evaluation.
+    """
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+    # phi for the equilibrium ancestral population
+    phi = dadi.PhiManip.phi_1D(xx)
+    
+    #bottleneck and growth
+    nu_func = lambda t: nuB*numpy.exp(numpy.log(nuF/nuB) * t/T)
+    phi = dadi.Integration.one_pop(phi, xx, T, nu_func)
+
+    fs = dadi.Spectrum.from_phi(phi, ns, (xx,))
+    return fs
+
+def PANGb2N(params, ns, pts): 
+    nuB, nuF, hrf, T, Q = params
+    """
+    Instantanous size change followed by exponential growth. #=bottlegrowth
+
+    params = (nu,T)
+    ns = (n1,)
+    nu1: Ratio of contemporary to ancient population size
+    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of background selection and selective sweep effects
+    Q: The proportion of the genome with a reduced effective size due to selection at linked sites
+    T: Time in the past at which growth began (in units of 2*Na 
+       generations) 
+    n1,n2: Size of fs to generate.
+    pts: Number of points to use in grid for evaluation.
+    """
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+    # phi for the equilibrium ancestral population
+    #NON recombining region:
+    philr = dadi.PhiManip.phi_1D(xx)
+    
+    #bottleneck and growth
+    nu_func_hrf = lambda t: (nuB*numpy.exp(numpy.log(nuF/nuB) * t/T) )* hrf
+    philr = dadi.Integration.one_pop(philr, xx, T, nu_func_hrf)
+    #spectrum
+    fslr = dadi.Spectrum.from_phi(philr, ns, (xx,))
+    
+    # phi for the equilibrium ancestral population
+    #recombining region:
+    phinr = dadi.PhiManip.phi_1D(xx)
+    
+    #bottleneck and growth
+    nu_func = lambda t: nuB*numpy.exp(numpy.log(nuF/nuB) * t/T)
+    phir = dadi.Integration.one_pop(phinr, xx, T, nu_func)
+    #spectrum
+    fsnr = dadi.Spectrum.from_phi(phinr, ns, (xx,))
+
+    ### Sum the two spectra in proportion O (and Q)
+    fs = ((1-Q)*fsnr + Q*fslr)  
+    return fs
+
 def IM(params, (n1,n2), pts):
     nu1, nu2, m12, m21, Ts = params
     """
@@ -286,7 +443,7 @@ def IM2N2m(params, (n1,n2), pts):
     # Now do the divergence event
     phiN = dadi.PhiManip.phi_1D_to_2D(xx, phiN)
     # We set the population sizes after the split to nu1 and nu2 and the migration rate to m12 and m21
-    phiN = dadi.Integration.two_pops(phiN, xx, nu1, nu2, m12=m12, m21=m21)
+    phiN = dadi.Integration.two_pops(phiN, xx, Ts,nu1, nu2, m12=m12, m21=m21)
     ###
     ## calculate the spectrum.
     fsN = dadi.Spectrum.from_phi(phiN, (n1,n2), (xx,xx))
@@ -308,7 +465,7 @@ def IM2N2m(params, (n1,n2), pts):
     # Now do the divergence event
     phinr = dadi.PhiManip.phi_1D_to_2D(xx, phinr)
     # We set the population sizes after the split to nu1 and nu2 and the migration rates to m12 and m21 
-    phinr = dadi.Integration.two_pops(phinr, xx, nu1, nu2, m12=m12, m21=m21)
+    phinr = dadi.Integration.two_pops(phinr, xx, Ts, nu1, nu2, m12=m12, m21=m21)
     ###
     ## calculate the spectrum.
     fsnr = dadi.Spectrum.from_phi(phinr, (n1,n2), (xx,xx))
@@ -318,7 +475,7 @@ def IM2N2m(params, (n1,n2), pts):
     # Now do the divergence event
     philr = dadi.PhiManip.phi_1D_to_2D(xx, philr)
     # We set the population sizes after the split to hrf*nu1 and hrf*nu2 and the migration rates to m12 and m21 
-    philr = dadi.Integration.two_pops(philr, xx, nu1*hrf, nu2*hrf, m12=m12, m21=m21)
+    philr = dadi.Integration.two_pops(philr, xx, Ts, nu1*hrf, nu2*hrf, m12=m12, m21=m21)
     ###
     ## calculate the spectrum.
     fslr = dadi.Spectrum.from_phi(philr, (n1,n2), (xx,xx))
@@ -426,6 +583,83 @@ def IM2mG(params, (n1,n2), pts):
     ### Sum the two spectra in proportion O (and P)
     fs = (P*fsN + (1-P)*fsI) 
     return fs
+
+def IM2N2mG(params, (n1,n2), pts):
+    nu1, nu2, b1, b2, hrf, m12, m21, me12, me21, Ts, P, Q = params
+
+    """
+    Model of semi permeability with split, ongoing migration with 2 migration rates, heterogenous effective population size (2 classes, shared by the two populations = background selection)
+
+    nu1: Size of population 1 after split.
+    nu2: Size of population 2 after split.
+    b1: Population growth coefficient of population 1
+    b2: Population growth coefficient of population 2
+    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of background selection and selective sweep effects
+    m12: Migration from pop 2 to pop 1 (2*Na*m12).
+    m21: Migration from pop 1 to pop 2.
+    me12: Effective migration from pop 2 to pop 1 in genomic islands.
+    me21: Effective migration from pop 1 to pop 2 in genomic islands.
+    Ts: The scaled time between the split and the ancient migration (in units of 2*Na generations).
+    P: The proportion of the genome evolving neutrally
+    Q: The proportion of the genome with a reduced effective size due to selection at linked sites
+    n1,n2: Size of fs to generate.
+    pts: Number of points to use in grid for evaluation.
+    """
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+
+    #### Calculate the neutral spectrum
+    # phi for the equilibrium ancestral population
+    phiN = dadi.PhiManip.phi_1D(xx)
+    # Now do the divergence event
+    phiN = dadi.PhiManip.phi_1D_to_2D(xx, phiN)
+    # We set the population sizes after the split to nu1 and nu2 and the migration rate to m12 and m21
+    bnu1_func = lambda t: nu1 * b1**(t/Ts)
+    bnu2_func = lambda t: nu2 * b2**(t/Ts)
+    phiN = dadi.Integration.two_pops(phiN, xx, Ts, bnu1_func, bnu1_func,bnu2_func, m12=m12, m21=m21)
+    ###
+    ## calculate the spectrum.
+    fsN = dadi.Spectrum.from_phi(phiN, (n1,n2), (xx,xx))
+
+    #### Calculate the genomic island spectrum
+    # phi for the equilibrium ancestral population
+    phiI = dadi.PhiManip.phi_1D(xx)
+    # Now do the divergence event
+    phiI = dadi.PhiManip.phi_1D_to_2D(xx, phiI)
+    # We set the population sizes after the split to nu1 and nu2 and the migration rates to me12 and me21
+    phiI = dadi.Integration.two_pops(phiI, xx, Ts, bnu1_func, bnu2_func, m12=me12, m21=me21)
+    ###
+    ## calculate the spectrum.
+    fsI = dadi.Spectrum.from_phi(phiI, (n1,n2), (xx,xx))
+
+    #### Calculate the spectrum in normally-recombining regions
+    # phi for the equilibrium ancestral population
+    phinr = dadi.PhiManip.phi_1D(xx)
+    # Now do the divergence event
+    phinr = dadi.PhiManip.phi_1D_to_2D(xx, phinr)
+    # We set the population sizes after the split to nu1 and nu2 and the migration rates to m12 and m21 
+    phinr = dadi.Integration.two_pops(phinr, xx, Ts, bnu1_func, bnu2_func, m12=m12, m21=m21)
+    ###
+    ## calculate the spectrum.
+    fsnr = dadi.Spectrum.from_phi(phinr, (n1,n2), (xx,xx))
+    #### Spectrum of low-recombining regions
+
+    # phi for the equilibrium ancestral population
+    philr = dadi.PhiManip.phi_1D(xx)
+    # Now do the divergence event
+    philr = dadi.PhiManip.phi_1D_to_2D(xx, philr)
+    # We set the population sizes after the split to hrf*nu1 and hrf*nu2 and the migration rates to m12 and m21 
+    bnu1hrf_func = lambda t: (nu1 * b1**(t/Ts)) * hrf
+    bnu2hrf_func = lambda t: (nu2 * b2**(t/Ts)) * hrf
+    philr = dadi.Integration.two_pops(philr, xx, Ts, bnu1hrf_func, bnu2hrf_func, m12=m12, m21=m21)
+    ###
+    ## calculate the spectrum.
+    fslr = dadi.Spectrum.from_phi(philr, (n1,n2), (xx,xx))
+
+    #### Sum the spectra
+    fs = (P*fsN+(1-P)*fsI+(1-Q)*fsnr+Q*fslr) 
+    return fs
+
 
 def AM(params, (n1,n2), pts):
     nu1, nu2, m12, m21, Ts, Tam = params
