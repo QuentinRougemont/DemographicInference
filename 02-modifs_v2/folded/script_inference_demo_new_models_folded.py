@@ -1230,7 +1230,7 @@ for namemodel in model_list:
             elif optimizationstate == "anneal_cold":
                 params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13], popt[14], popt[15])
             else :
-                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13]), popt[14], popt[15])
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13], popt[14], popt[15])
 
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
