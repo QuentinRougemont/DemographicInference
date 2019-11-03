@@ -1166,7 +1166,7 @@ for namemodel in model_list:
             #nu1, nu2,hrf,  mA12, mA21, m12, m21, Ts,Tsc1, Tam, Tsc, P
                 params = (1, 1, 0.8, 5, 5, 5, 5, 1, 0.6, 0.3, 0.1, 0.5)
             elif optimizationstate == "anneal_cold":
-                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11]
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11])
             else :
                 params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11])
 
@@ -1226,11 +1226,11 @@ for namemodel in model_list:
 
             if optimizationstate == "anneal_hot":
             #nu1, nu2, hrf, mA12, mA21, meA12, meA21, m12, m21, me12, me21, Ts, Tam, Tsc, P, Q
-                params = (1, 1, 0.8, 5, 5, 0.5, 0.5, 5, 5, 0.5, 0.5, 1, 0.3, 0.1, 0.5 0.5)
+                params = (1, 1, 0.8, 5, 5, 0.5, 0.5, 5, 5, 0.5, 0.5, 1, 0.3, 0.1, 0.5, 0.5)
             elif optimizationstate == "anneal_cold":
                 params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13], popt[14], popt[15])
             else :
-                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13]), popt[14], popt[15]
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13]), popt[14], popt[15])
 
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
