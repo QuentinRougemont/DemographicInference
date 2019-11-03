@@ -977,7 +977,7 @@ for namemodel in model_list:
     if namemodel == "PIM2m":
 
         # Custom Periodic Isol. w. Migration with 2 Migration rate model: nu1, nu2, mA12, mA21, mAe12, mAe21, m12, m21, me12, me21, Ts, Tam, Tsc, P
-        func = modeledemo_mis_new_models.PIM2m
+        func = modeledemo_new_models_folded.PIM2m
 
         for optimizationstate in opt_list:
             print optimizationstate
@@ -1007,7 +1007,7 @@ for namemodel in model_list:
     if namemodel == "PIM2N":
 
         # Custom Periodic Isol. w. Migration with 2 Migration rate and linked sel.: nu1, nu2, hrf, mA12, mA21, m12, m21, Ts, Tam, Tsc, Q
-        func = modeledemo_mis_new_models.PIM2N
+        func = modeledemo_new_models_folded.PIM2N
 
         for optimizationstate in opt_list:
             print optimizationstate
@@ -1125,7 +1125,7 @@ for namemodel in model_list:
     if namemodel == "PSC2m":
 
         # Custom Periodic SC with 2 Migration rate model: nu1, nu2, mA12, mA21, mAe12, mAe21, m12, m21, me12, me21, Ts, Tsc1, Tam, Tsc, P
-        func = modeledemo_mis_new_models.PSC2m
+        func = modeledemo_new_models_folded.PSC2m
 
         for optimizationstate in opt_list:
             print optimizationstate
@@ -1157,7 +1157,7 @@ for namemodel in model_list:
     if namemodel == "PSC2N":
 
         # Custom Periodic SC with 2 Migration rate model: nu1, nu2, hrf, mA12, mA21, m12, m21, Ts, Tsc1, Tam, Tsc, P
-        func = modeledemo_mis_new_models.PSC2N
+        func = modeledemo_new_models_folded.PSC2N
 
         for optimizationstate in opt_list:
             print optimizationstate
@@ -1187,7 +1187,7 @@ for namemodel in model_list:
     if namemodel == "PSC2N2m":
 
         # Custom Periodic SC with 2 Migration rate model: nu1, nu2, hrf, mA12, mA21, mAe12, mAe21, m12, m21, me12, me21, Ts, Tsc1, Tam, Tsc, P, Q
-        func = modeledemo_mis_new_models.PSC2N2m
+        func = modeledemo_new_models_folded.PSC2N2m
 
         for optimizationstate in opt_list:
             print optimizationstate
@@ -1219,7 +1219,7 @@ for namemodel in model_list:
     if namemodel == "PIM2N2m":
 
         # Custom Periodic Isol. w. Migration with 2 Migration rate model: nu1, nu2, mA12, mA21, mAe12, mAe21, m12, m21, me12, me21, Ts, Tam, Tsc, P
-        func = modeledemo_mis_new_models.PIM2N2m
+        func = modeledemo_new_models_folded.PIM2N2m
 
         for optimizationstate in opt_list:
             print optimizationstate

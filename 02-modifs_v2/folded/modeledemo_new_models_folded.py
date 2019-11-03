@@ -1836,7 +1836,7 @@ def PSC2N(params, (n1,n2), pts):
 ########################### PSC2N2m PIM2N2m #############################################
 
 def PIM2N2m(params, (n1,n2), pts):
-    nu1, nu2, hrf, mA12, mA21, meA12, meA21, m12, m21, me12, me21, Ts, Tam, Tsc, P Q = params
+    nu1, nu2, hrf, mA12, mA21, meA12, meA21, m12, m21, me12, me21, Ts, Tam, Tsc, P, Q = params
 
     """
     Model of semi permeability with split, ancient migration with 2 migration rates
