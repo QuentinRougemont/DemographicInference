@@ -1741,7 +1741,7 @@ def PIM2N(params, (n1,n2), pts):
     # Now do the divergence event
     phiNr = dadi.PhiManip.phi_1D_to_2D(xx, phiNr)
     # We set the population sizes after the split to nu1 and nu2 and the migration rate to mA12 and mA21
-    phiNr = dadi.Integration.two_pops(phiNr, xx, Ts, nu1, nu2, m12=mA12, m21=mA21)
+    phiNr = dadi.Integration.two_pops(phiNr, xx, Ts, nu1, nu2, m12=m12, m21=m21)
     # We keep the population sizes after the split to nu1 and nu2 and set the migration rates to zero
     phiNr = dadi.Integration.two_pops(phiNr, xx, Tam, nu1, nu2, m12=0, m21=0)
     ## We now start a new migration event at time Tsc:
@@ -1756,7 +1756,7 @@ def PIM2N(params, (n1,n2), pts):
     # Now do the divergence event
     phiLr = dadi.PhiManip.phi_1D_to_2D(xx, phiLr)
     #Set population sizes after the split to hrf*nu1 and hrf*nu2 and the migration rate to meA12 and meA21
-    phiLr = dadi.Integration.two_pops(phiLr, xx, Ts, nu1*hrf, nu2*hrf, m12=meA12, m21=meA21)
+    phiLr = dadi.Integration.two_pops(phiLr, xx, Ts, nu1*hrf, nu2*hrf, m12=m12, m21=m21)
     # We keep the population sizes after the split to nu1 and nu2 and set the migration rates to zero
     phiLr = dadi.Integration.two_pops(phiLr, xx, Tam, nu1, nu2, m12=0, m21=0)
     ## We now start a new migration event at time Tsc:
