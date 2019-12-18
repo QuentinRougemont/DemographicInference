@@ -616,7 +616,7 @@ def IM2N2mG(params, (n1,n2), pts):
     # We set the population sizes after the split to nu1 and nu2 and the migration rate to m12 and m21
     bnu1_func = lambda t: nu1 * b1**(t/Ts)
     bnu2_func = lambda t: nu2 * b2**(t/Ts)
-    phiN = dadi.Integration.two_pops(phiN, xx, Ts, bnu1_func, bnu1_func,bnu2_func, m12=m12, m21=m21)
+    phiN = dadi.Integration.two_pops(phiN, xx, Ts, bnu1_func, bnu2_func, m12=m12, m21=m21)
     ###
     ## calculate the spectrum.
     fsN = dadi.Spectrum.from_phi(phiN, (n1,n2), (xx,xx))

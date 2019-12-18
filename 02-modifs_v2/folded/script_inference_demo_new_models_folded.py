@@ -459,7 +459,7 @@ for namemodel in model_list:
     if namemodel == "IM2N2mG":
 
         # Custom Ancient Migration with 2 Migration rate model and 2 population size: nu1, nu2, b1, b2, hrf, m12, m21, me12, me21, Ts, P, Q 
-        func = modeledemo_new_models_folded.IM2N2m
+        func = modeledemo_new_models_folded.IM2N2mG
 
         for optimizationstate in opt_list:
             print optimizationstate
