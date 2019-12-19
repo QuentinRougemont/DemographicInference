@@ -662,7 +662,7 @@ def IM2N2mG(params, (n1,n2), pts):
 
 
 def AM(params, (n1,n2), pts):
-    nu1, nu2, m12, m21, Ts, Tam = params
+    nu1, nu2, m12, m21, Tam, Ts = params
 
     """
     Model with split, ancient migration
@@ -684,9 +684,9 @@ def AM(params, (n1,n2), pts):
     # Now do the divergence event
     phi = dadi.PhiManip.phi_1D_to_2D(xx, phi)
     # We set the population sizes after the split to nu1 and nu2 and the migration rate to m12 and m21 
-    phi = dadi.Integration.two_pops(phi, xx, Ts, nu1, nu2, m12=m12, m21=m21)
+    phi = dadi.Integration.two_pops(phi, xx, Tam, nu1, nu2, m12=m12, m21=m21)
     # We keep the population sizes after the split to nu1 and nu2 and set the migration rates to zero
-    phi = dadi.Integration.two_pops(phi, xx, Tam, nu1, nu2, m12=0, m21=0)
+    phi = dadi.Integration.two_pops(phi, xx, Ts, nu1, nu2, m12=0, m21=0)
 
     # Finally, calculate the spectrum.
     fs = dadi.Spectrum.from_phi(phi, (n1,n2), (xx,xx))
