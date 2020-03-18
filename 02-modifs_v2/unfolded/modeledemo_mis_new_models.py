@@ -1707,7 +1707,7 @@ def PIM2N(params, (n1,n2), pts):
     fslrM = dadi.Numerics.reverse_array(fslr0)
 
     ### Sum the two spectra in proportion P (and O)
-    fs = O*(1-Q)*fsnrO+Q*fslrO) + (1-O)*((1-Q)*fsnrM + Q*fslrM)
+    fs = O*((1-Q)*fsnrO+Q*fslrO) + (1-O)*((1-Q)*fsnrM + Q*fslrM)
     return fs
 
 def PSC2N(params, (n1,n2), pts):
