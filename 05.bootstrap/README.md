@@ -11,7 +11,7 @@ for godambe the function godambe and the models must me imported as well
 
 #TO DO:
 
-* extend to every possible models
+* extend basg script to every possible models
 
-* create a reader for the parameters
+* create a reader for the parameters in uncertainty.py
 

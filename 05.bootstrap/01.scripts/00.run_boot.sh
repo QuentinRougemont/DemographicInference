@@ -17,7 +17,6 @@ else
     model=$1   #name of best model (either SC2N2mG or IM2N2mG  for now)
     P=$2       #value of P parameter in dadi
     Q=$3       #value of Q parameter in dadi
-    model=$1
     echo "model is $model"
     echo "P value is $P"
     echo "Q value is $Q"
