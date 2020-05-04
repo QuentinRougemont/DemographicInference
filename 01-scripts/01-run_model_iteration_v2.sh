@@ -27,8 +27,10 @@ then
     exit
 fi
 #run models withou masking
-if [ $folded = "folded" ]
+if [[ $folded = "folded" ]]
 then
+	echo "running folded model"
+	echo "by default singleton are not masked (used -z option)"
 	python ./02-modifs_v2/folded/script_inference_demo_new_models_folded.py \
 		-o "$model"_"$id" \
 		-y pop1 -x pop2 \
@@ -38,6 +40,8 @@ then
 		-l -v  \
 		&>> ./10-log/"$model"_"$id".log;
 else
+	echo "running folded model"
+	echo "by default singleton are not masked (used -z option)"
     python ./02-modifs_v2/unfolded/script_inference_demo_new_models.py \
 	    -o "$model"_$id \
 	    -y pop1 -x pop2 \
