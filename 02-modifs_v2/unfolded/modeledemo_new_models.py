@@ -1927,6 +1927,69 @@ def SIA2NG(params, (n1,n2), pts):
     return fs
 
 
+
+
+def SIA2N(params, (n1,n2), pts):
+    nuA, nu1, nu2, b1, b2, hrf, Tp, Ts, Q, O = params
+    """
+    Model with split and complete isolation, heterogenous effective population size (2 classes, shared by the two populations = background selection)
+    nuA: ancetral size at t change (Tp)
+    nu1: Size of population 1 after split.
+    nu2: Size of population 2 after split.
+    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of background selection and selective sweep effects
+    Ts: The scaled time of the split
+    Q: The proportion of the genome with a reduced effective size due to selection at linked sites
+    O: The proportion of accurate orientation
+    n1,n2: Size of fs to generate.
+    pts: Number of points to use in grid for evaluation.
+    """
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+
+    #### Calculate the pectrum in normally-recombining regions
+    # phi for the equilibrium ancestral population
+    phinr = dadi.PhiManip.phi_1D(xx)
+
+    #Now do the population growth event.
+    phinr = dadi.Integration.one_pop(phinr, xx, Tp, nu=nuA)
+
+    # Now do the divergence event
+    phinr = dadi.PhiManip.phi_1D_to_2D(xx, phinr)
+    # We set the population sizes after the split to nu1 and nu2 and the migration rates to m12 and m21 
+    phinr = dadi.Integration.two_pops(phinr, xx, Ts, nu1, nu2, m12=0, m21=0)
+ 
+    ###
+    ## Finally, calculate the spectrum.
+    # oriented
+    fsnrO = dadi.Spectrum.from_phi(phinr, (n1,n2), (xx,xx))
+    # mis-oriented
+    fsnrM = dadi.Numerics.reverse_array(fsnrO)
+
+    #### Spectrum of low-recombining regions
+    # phi for the equilibrium ancestral population
+    philr = dadi.PhiManip.phi_1D(xx)
+
+    #Now do the population growth event.
+    philr = dadi.Integration.one_pop(philr, xx, Tp, nu=nuA)
+
+    # Now do the divergence event
+    philr = dadi.PhiManip.phi_1D_to_2D(xx, philr)
+    # We set the population sizes after the split to hrf*nu1 and hrf*nu2 and the migration rates to m12 and m21 
+    philr = dadi.Integration.two_pops(philr, xx, Ts, nu1*hrf, nu2*hrf, m12=0, m21=0)
+
+    philr = dadi.Integration.two_pops(philr, xx, Ts, m12=0, m21=0)
+    ###
+    ## Finally, calculate the spectrum.
+    # oriented
+    fslrO = dadi.Spectrum.from_phi(philr, (n1,n2), (xx,xx))
+    # mis-oriented
+    fslrM = dadi.Numerics.reverse_array(fslrO)
+    
+    ### Sum the two spectra in proportion O (and Q)
+    fs= O*((1-Q)*fsnrO + Q*fslrO) + (1-O)*((1-Q)*fsnrM + Q*fslrM)
+    return fs
+
+
 def IMA(params, (n1,n2), pts):
     nuA, nu1, nu2, m12, m21, Tp, Ts, O = params
     """
