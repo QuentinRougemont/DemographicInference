@@ -315,13 +315,13 @@ for namemodel in model_list:
     if namemodel == "SIA2N":
 
         # Custom Simple Isolation model with different recombination along the genome: nuA, nu1, nu2, Tp, Ts, nr, bf, O
-        func = modeledemo_new_models.SI2N
+        func = modeledemo_new_models.SIA2N
 
         for optimizationstate in opt_list:
             print optimizationstate
 
             if optimizationstate == "anneal_hot":
-                params = (1, 1, 1, 1, 0.5, 1, 0.8)
+                params = (1, 1, 1, 1,1, 0.5, 1, 0.8)
             elif optimizationstate == "anneal_cold":
                 params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7])
             else:
@@ -331,7 +331,7 @@ for namemodel in model_list:
             # will try wacky parameter values. We in particular want to exclude values with
             # very long times, as they will take a long time to evaluate.
             upper_bound = [100, 100, 100, 10, 10, 1, 0.999 , 0.99]
-            lower_bound = [0.01, 0.01, 0.01,0, 0, 0, 0.001, 0.01]
+            lower_bound = [0.01, 0.01, 0.01, 0, 0, 0, 0.001, 0.01]
 
             done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
                                   nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
@@ -433,7 +433,7 @@ for namemodel in model_list:
 
 
 
-    if namemodel == "SI2NG":
+    if namemodel == "SIA2NG":
 
         # Custom Simple Isolation model with different recombination along the genome: nA, nu1, nu2, b1, b2, hrf, Tp, Ts, Q, O
         func = modeledemo_new_models.SIA2NG
@@ -452,7 +452,7 @@ for namemodel in model_list:
             # will try wacky parameter values. We in particular want to exclude values with
             # very long times, as they will take a long time to evaluate.
             upper_bound = [100,  100, 100, 100, 100, 1, 10, 10, 0.5, 0.99]
-            lower_bound = [0.01, 0.01, 0.01, 0.01, 00.1, 0.01, 0.01, 0.01, 0.01, 0.01]
+            lower_bound = [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01]
 
             done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
                                   nompop1=nompop1, nompop2=nompop2, params=params, fixed_params=None, lower_bound=lower_bound, 
