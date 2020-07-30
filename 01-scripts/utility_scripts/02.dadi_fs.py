@@ -5,7 +5,7 @@ import dadi
 import pylab
 
 try:
-        proj = int(sys.argv[1])  # size of fs to project must be equal or smaller than the number of individuals
+        proj = int(sys.argv[1])  # size of fs to project must be equal or smaller than 2 * the number of individuals
 except:
         print(__doc__)
 
