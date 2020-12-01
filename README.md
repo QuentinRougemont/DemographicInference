@@ -31,15 +31,20 @@ Gutenkunst RN, Hernandez RD, Williams SH, Bustamante CD (2009) Inferring the joi
 
 Tine M, Kuhl H, Gagnaire P-A et al. (2014) European sea bass genome and its variation provide insights into adaptation to euryhalinity and speciation. Nature Communications, 5:5770,doi:10.1038/ncomms6770
 
-Rougemont, Q., Gagnaire, P.-A., Perrier, C., Genthon, C., Besnard, A.-L., Launey, S. and Evanno, G. (2016), Inferring the demographic history underlying parallel genomic divergence among pairs of parasitic and non-parasitic lamprey ecotypes. Mol Ecol. Accepted Author Manuscript. doi:10.1111/mec.13664
+Rougemont, Q., Gagnaire, P.-A., Perrier, C., Genthon, C., Besnard, A.-L., Launey, S. and Evanno, G. (2016), Inferring the demographic history underlying parallel genomic divergence among pairs of parasitic and non-parasitic lamprey ecotypes. Mol Ecol. Accepted Author Manuscript. https://doi:10.1111/mec.13664
 
 Hugo Cayuela, Quentin Rougemont, Martin Laporte, Claire Mérot, Eric Normandeau, Yann Dorant, Ole K. Tørresen, Siv Nam Khang Hoff, Sissel Jentoft, Pascal Sirois, Martin Castonguay, Teunis Jansen, Kim Praebel, Marie Clément, Louis Bernatchez
-Standing genetic variation and chromosomal rearrangements facilitate local adaptation in a marine fish
+Shared ancestral polymorphism and chromosomal rearrangements as potential drivers of local adaptation in a marine fish
+https://doi.org/10.1111/mec.15499
 bioRxiv 782201; doi: https://doi.org/10.1101/782201  
 
-Quentin Rougemont, Jean-Sébastien Moore, Thibault Leroy, Eric Normandeau, Eric B. Rondeau, Ruth E. Withler, Donald M. Van Doornik, Penelope A. Crane, Kerry A. Naish, John Carlos Garza, Terry D. Beacham, Ben F. Koop, Louis Bernatchez 
-Demographic history, linked selection, and recombination shape the genomic landscape of a broadly distributed Pacific salmon
-bioRxiv 732750; doi: https://doi.org/10.1101/732750 
+Rougemont Q, Moore J-S, Leroy T, Normandeau E, Rondeau EB, Withler RE, et al. (2020) 
+Demographic history shaped geographical patterns of deleterious mutation load in a broadly distributed Pacific Salmon. PLoS Genet 16(8):e1008348. 
+https://doi.org/10.1371/journal. pgen.1008348
+
+Population genomics and history of speciation reveal fishery management gaps in two related redfish species (Sebastes mentella and Sebastes fasciatus)” (2020)
+Laura Benestan, Quentin Rougemont, Caroline Senay, Eric Normandeau, Eric Parent, Rick Rideout, Louis Bernatchez, Yvan Lambert, Céline Audet, Geneviève J. Parent 
+Evoluationay application https://doi.org/10.1111/eva.13143
 
 
 See also: https://popgensealab.wordpress.com/dadi-inference/
