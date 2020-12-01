@@ -16,7 +16,7 @@ cd "${PBS_O_WORKDIR}"
 
 # Folder to run simulations
 fs="your_spectrum.fs" #$1     #dataset fs stored in 03-data
-model="SCA2m" #$2  #model names
+model="SCAG" #$2  #model names
 folded=folded #$3 #either "folded" or "folded"
 grid_size=80 #$4
 FOLDER=$model.$MOAB_JOBARRAYINDEX

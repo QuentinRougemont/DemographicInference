@@ -7,7 +7,7 @@
 #PBS -l nodes=1:ppn=8
 #PBS -M quentinrougemont@orange.fr
 ##PBS -m ea 
-####PBS -t [1-4]%4
+##PBS -t [1-4]%4
 
 source /clumeq/bin/enable_cc_cvmfs
 source /rap/ihv-653-ab/quentin/01.laben/DemographicInference/temp/bin/activate
@@ -16,8 +16,8 @@ cd "${PBS_O_WORKDIR}"
 
 # Folder to run simulations
 fs="your_spectrum.fs" #$1     #dataset fs stored in 03-data
-model="SCA2m" #$2  #model names
-folded=folded #$3 #either "folded" or "folded"
+model="AM2mG" #$2  #model names
+folded=folded #$3 #either "folded" or "unfolded"
 grid_size=80 #$4
 FOLDER=$model.$MOAB_JOBARRAYINDEX
 
@@ -28,7 +28,7 @@ FOLDER=$model.$MOAB_JOBARRAYINDEX
 #fi
 #if [[ -z "$model" ]]
 #then
-#    echo "Error: need model name ex: SCA2M"
+#    echo "Error: need model name ex: SC2M"
 #    exit
 #fi
 #if [[ -z "$folded" ]]

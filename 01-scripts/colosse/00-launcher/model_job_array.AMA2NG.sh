@@ -7,7 +7,7 @@
 #PBS -l nodes=1:ppn=8
 #PBS -M quentinrougemont@orange.fr
 ##PBS -m ea 
-##PBS -t [1-4]%4
+####PBS -t [1-4]%4
 
 source /clumeq/bin/enable_cc_cvmfs
 source /rap/ihv-653-ab/quentin/01.laben/DemographicInference/temp/bin/activate
@@ -15,7 +15,7 @@ source /rap/ihv-653-ab/quentin/01.laben/DemographicInference/temp/bin/activate
 cd "${PBS_O_WORKDIR}"
 
 # Folder to run simulations
-fs="FIN_CAN3_38_1500pb.fs" #$1     #dataset fs stored in 03-data
+fs="your_spectrum.fs" #$1     #dataset fs stored in 03-data
 model="AMA2NG" #$2  #model names
 folded=folded #$3 #either "folded" or "folded"
 grid_size=80 #$4

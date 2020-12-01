@@ -7,7 +7,7 @@
 #PBS -l nodes=1:ppn=8
 #PBS -M yourmail@yourmail
 ##PBS -m ea 
-#PBS -t [1-4]%4
+###PBS -t [1-4]%4
 
 source /clumeq/bin/enable_cc_cvmfs
 source /rap/ihv-653-ab/quentin/01.laben/DemographicInference/temp/bin/activate
@@ -18,10 +18,10 @@ cd "${PBS_O_WORKDIR}"
 fs="your_spectrum.fs" #$1     #dataset fs stored in 03-data
 model="SI2N" #$2  #model names
 folded=folded #$3 #either "folded" or "unfolded"
-grid_size=40 #number of grid points (n pts) in dadi will be n,n+10,n+20
+grid_size=80 #number of grid points (n pts) in dadi will be n,n+10,n+20
 FOLDER=$model.$MOAB_JOBARRAYINDEX
 
-for i in $(seq 8)
+for i in $(seq 4)
 do
     ./01-scripts/00.run_dadi_parallel_v2.sh "$fs" "$model" "$folded" "$grid_size" "$FOLDER"_"$i" 
 done
