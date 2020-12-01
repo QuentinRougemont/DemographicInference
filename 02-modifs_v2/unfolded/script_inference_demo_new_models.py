@@ -751,9 +751,9 @@ for namemodel in model_list:
             if optimizationstate == "anneal_hot":        
                 params = (1, 1, 1, 1, 1, 5, 5, 0.5, 0.5, 1, 1, 0.5, 0.8)
             elif optimizationstate == "anneal_cold":
-                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[12],  popt[13])
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11],  popt[12])
             else :
-                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[12],  popt[13])
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11],  popt[12])
         
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
@@ -1611,9 +1611,9 @@ for namemodel in model_list:
             if optimizationstate == "anneal_hot":        
                 params = (1, 1, 1, 1, 1, 0.8, 1, 1, 5, 5, 0.1, 0.1, 1, 0.5, 0.1, 0.8)
             elif optimizationstate == "anneal_cold":
-                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13])
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13], popt[14], popt[15])
             else :
-                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13])
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7], popt[8], popt[9], popt[10], popt[11], popt[12], popt[13], popt[14], popt[15])
 
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
