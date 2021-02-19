@@ -117,7 +117,13 @@ models for one pop:
  * with instantaneous pop change (PAN)
  * with instantaneous pop change followed by exp. growth (PANG)
  * same with bottleneck (PANGb)
- * samie with linked selection (suffix 2N)
+ * same with linked selection (suffix 2N)
+
+ These are defined [here](https://github.com/QuentinRougemont/DemographicInference/tree/master/02-modifs_v2/folded) for the folded version  
+ & [here](https://github.com/QuentinRougemont/DemographicInference/tree/master/02-modifs_v2/unfolded) for the unfolded version
+
+ The script to define the prior and launch the one pop model is [here](https://github.com/QuentinRougemont/DemographicInference/blob/master/02-modifs_v2/pang_models.py)
+
 
 ## Unfolding and Folding:
 
