@@ -99,11 +99,19 @@ These modifications were originally developed by Tine et al. (2014). Yoann Ancia
 5. additional modification:
 
 model with/without growth for all population:
- * IMG, IM2NG, IM2MG, IN2N2MG
- * AMG, AM2NG, AM2MG, AM2N2MG
- * SCG, SC2NG, SC2MG, Sc2N2MG
- * SIG, SI2NG
+ * IM/IMG, IM2N/IM2NG, IM2m/IM2mG, IM2N2m/IM2N2mG
+ * AM/AMG, AM2N/AM2NG, AM2m/AM2mG, AM2N2m/AM2N2mG
+ * SC/SCG, SC2N/SC2NG, SC2m/SC2mG, SC2N2m/SC2N2mG
+ * SI/SIG, SI2N/SI2NG
  * PANG
+
+model with/without growth IN ANCESTRAL population:
+ * IMA/IMAG, IMA2N/IMA2NG, IMA2m/IMA2mG, IMA2N2m/IMA2N2mG
+ * AMA/AMAG, AMA2N/AMA2NG, AMA2m/AMA2mG, AMA2N2m/AMA2N2mG
+ * SCA/SCAG, SCA2N/SCA2NG, SCA2m/SCA2mG, SCA2N2m/SCA2N2mG
+ * SIA/SIAG, SIA2N/SIA2NG
+
+models with multiple phase of isolation contacts are also implemented and can be modified easily
 
 models for one pop:
  * with instantaneous pop change (PAN)
