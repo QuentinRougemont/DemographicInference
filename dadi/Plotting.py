@@ -60,7 +60,8 @@ def plot_1d_fs(fs, fig_num=None):
     fig.show()
 
 def plot_1d_comp_multinom(model, data, fig_num=None, residual='Anscombe',
-                          plot_masked=False):
+                          plot_masked=False,saveplot=False,
+                          nomplot="plot_1d_comp_Poisson"):
     """
     Mulitnomial comparison between 1d model and data.
 
@@ -81,10 +82,11 @@ def plot_1d_comp_multinom(model, data, fig_num=None, residual='Anscombe',
     model = Inference.optimally_scaled_sfs(model, data)
 
     plot_1d_comp_Poisson(model, data, fig_num, residual,
-                         plot_masked)
+                         plot_masked, saveplot, nomplot)
 
 def plot_1d_comp_Poisson(model, data, fig_num=None, residual='Anscombe',
-                         plot_masked=False):
+                         plot_masked=False,saveplot=False,
+                          nomplot="plot_1d_comp_Poisson"):
     """
     Poisson comparison between 1d model and data.
 
@@ -130,7 +132,10 @@ def plot_1d_comp_Poisson(model, data, fig_num=None, residual='Anscombe',
         pylab.plot(resid.data, '--og', mfc='w', zorder=-100)
 
     ax.set_xlim(0, data.shape[0]-1)
-    pylab.show()
+    if saveplot:
+        nomplot=nomplot + ".pdf"
+        pylab.savefig(nomplot)
+    #pylab.show()
 
 def plot_single_2d_sfs(sfs, vmin=None, vmax=None, ax=None, 
                        pop_ids=None, extend='neither', colorbar=True):
