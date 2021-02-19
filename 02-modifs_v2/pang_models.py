@@ -21,7 +21,7 @@ def usage():
     print("# This script allow you to test different demographic models on your genomic data\n"+
         "# and will give you which one is the best fitted.\n\n"+
         "# This is an exemple of the most complete command line :\n"+
-        "# -o pathoutput -y population1 -p 10,20,30 -f pathfsfile -m PAN, PANG, PANGbott, PAN2N, PANGbott2N -l -a -h -v\n\n"+
+        "# -o pathoutput -y population1 -p 10,20,30 -f pathfsfile -m PAN, PANG, PANGb, PANG2N, PANGb2N -l -a -h -v\n\n"+
         "# This is an exemple of the shortest command line:\n"+
         "# -f pathfsfile\n\n"+
         "# -h --help : Display the help you are looking at.\n"+
@@ -29,7 +29,7 @@ def usage():
         "# -o --outputname : Take the path of output file.\n"+
         "# -f --fs_file_name : Take the path of the fs file from the parent directory.\n"+
         "# -p --grid_points : Take 3 numbers separated by a coma, for the size of grids for extrapolation.\n"+
-        "# -m --model_list : Take until 18 name of model (PAN, PANG, PANGbott, PAN2N, PANG2N PANGbot2N)separated by a coma.\n"+
+        "# -m --model_list : Take until 18 name of model (PAN, PANG, PANGb, PANG2N, PANGb2N)separated by a coma.\n"+
         "# For more information on models see docstrings in the module modeledemo.\n"+
         "# -z : mask the singletons.\n"+
         "# -l : record the final parameters in the output file.\n\n\n"
@@ -43,7 +43,7 @@ def takearg(argv):
     masked = False # freq 0,1 and 1,0 masked if masked = 1
     pts_l = None  # Grids sizes for extrapolation
     outputname = "mis_fs_2d_optlog"
-    model_list = ["PAN","PANG","PANGb"]
+    model_list = ["PAN","PANG","PANGb","PANG2N","PANGb2N"]
     verbose = False
     logparam = False
     nompop1 = "Pop1"
@@ -161,10 +161,13 @@ def callmodel(func, data, output_file, modeldemo, ll_opt_dic, nbparam_dic,
     if optimizationstate == "BFGS" :
         import pylab
         pylab.figure()
-        dadi.Plotting.plot_1d_comp_multinom(model, data,fig_num=None, residual="Anscombe",
-                                  plot_masked=True, saveplot=True, nomplot=(outputname + "_" + modeldemo), showplot=False)
+        dadi.Plotting.plot_1d_comp_multinom(model, data,fig_num=None, residual="Anscombe" ,
+                                  plot_masked=False, saveplot=True, nomplot=(outputname + "_" + modeldemo)) #, showplot=False)
     done=True
     return(done, ll_opt_dic, nbparam_dic, popt)
+
+#plot_1d_comp_multinom(model, data, fig_num=None, residual='Anscombe',
+#                          plot_masked=False):
 
 ##############################
 ##############################
@@ -227,8 +230,8 @@ for namemodel in model_list:
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
             # very long times, as they will take a long time to evaluate.
-            upper_bound = [100, 20]
-            lower_bound = [0.01, 0.01]
+            upper_bound = [200, 20]
+            lower_bound = [0.01, 0.001]
 
             done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
                                   nompop1=nompop1, params=params, fixed_params=None, lower_bound=lower_bound, 
@@ -256,7 +259,7 @@ for namemodel in model_list:
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
             # very long times, as they will take a long time to evaluate.
-            upper_bound = [100, 20 ]
+            upper_bound = [200, 40 ]
             lower_bound = [0.01,0.01]
 
             done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
@@ -285,8 +288,8 @@ for namemodel in model_list:
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
             # very long times, as they will take a long time to evaluate.
-            upper_bound = [80, 100, 15 ]
-            lower_bound = [0.01, 0.01, 0.01]
+            upper_bound = [200, 200, 20 ]
+            lower_bound = [0.001, 0.001, 0.0001]
 
             done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
                                   nompop1=nompop1, params=params, fixed_params=None, lower_bound=lower_bound, 
@@ -314,8 +317,8 @@ for namemodel in model_list:
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
             # very long times, as they will take a long time to evaluate.
-            upper_bound = [100,  1, 20, 0.5 ]
-            lower_bound = [0.01, 0.01, 0.01, 0.01]
+            upper_bound = [200,  1, 20, 0.5 ]
+            lower_bound = [0.01, 0.01, 0.0001, 0.01]
 
             done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
                                   nompop1=nompop1, params=params, fixed_params=None, lower_bound=lower_bound, 
@@ -343,8 +346,8 @@ for namemodel in model_list:
             # The upper_bound array is for use in optimization. Occasionally the optimizer
             # will try wacky parameter values. We in particular want to exclude values with
             # very long times, as they will take a long time to evaluate.
-            upper_bound = [100, 100, 1, 15, 0.5]
-            lower_bound = [0.01, 0.01, 0.01, 0.01, 0.01]
+            upper_bound = [200, 200, 1, 20, 0.5]
+            lower_bound = [0.01, 0.01, 0.01, 0.0001, 0.01]
 
             done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
                                   nompop1=nompop1, params=params, fixed_params=None, lower_bound=lower_bound, 

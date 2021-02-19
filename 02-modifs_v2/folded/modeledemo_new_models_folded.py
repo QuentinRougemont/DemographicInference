@@ -248,14 +248,16 @@ def PANG2N(params, (n1), pts):
 def PANGb(params, ns, pts): 
     nuB,nuF,T = params
     """
-    Instantanous size change followed by exponential growth. #=bottlegrowth
+   Instantanous size change followed by exponential growth. #=bottlegrowth
 
-    params = (nu,T)
+    params = (nuB,,nuF,T)
     ns = (n1,)
-    nu1: Ratio of contemporary to ancient population size
+    nuB: Ratio of population size after instantanous change to ancient
+         population size
+    nuF: Ratio of contemporary to ancient population size
     T: Time in the past at which growth began (in units of 2*Na 
        generations) 
-    pts: Number of points to use in grid for evaluation.
+    pts: Number of points to use in grid for evaluation.    
     """
     # Define the grid we'll use
     xx = dadi.Numerics.default_grid(pts)
@@ -274,14 +276,17 @@ def PANGb2N(params, ns, pts):
     """
     Instantanous size change followed by exponential growth. #=bottlegrowth
 
-    params = (nu,T)
+    params = (nuB, nuF,hrf, T, Q)
     ns = (n1,)
-    nu1: Ratio of contemporary to ancient population size
+    nuB: Ratio of population size after instantanous change to ancient
+         population size
+    nuF: Ratio of contemporary to ancient population size
+
     hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of background selection and selective sweep effects
     Q: The proportion of the genome with a reduced effective size due to selection at linked sites
     T: Time in the past at which growth began (in units of 2*Na 
        generations) 
-    n1,n2: Size of fs to generate.
+    ns, Size of fs to generate.
     pts: Number of points to use in grid for evaluation.
     """
     # Define the grid we'll use
