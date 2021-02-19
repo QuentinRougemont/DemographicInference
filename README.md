@@ -51,16 +51,25 @@ See also: https://popgensealab.wordpress.com/dadi-inference/
 
 ### Dadi and Its modification:
 
-The modified version of dadi contain 4 improvements:
+The modified version of dadi contain several improvements
 
-1. The possibility to explictly test alternative models of speciation such as models of divergence with continuous gene flow (IM models), models of secondary contact (SC models), models of strict alloptatric divergence (SI) or models of divergence with initial gene flow followed by isolation without gene flow (AM model). The models are implemented in the model_demo.py
+1. The possibility to explictly test alternative models of speciation such as models of divergence with continuous gene flow (IM models), models of secondary contact (SC models), models of strict alloptatric divergence (SI) or models of divergence with initial gene flow followed by isolation without gene flow (AM model). The models are:  
+  * IM 
+  * AM 
+  * SI 
+  * SC 
+   and are implemented in the model_demo.py (see folder 02-modifs_v2)
 
 2. The possibility to integrate semipermeability in the demographic models of divergence with gene flow (IM2m, AM2m) and secondary contacts (SC2m).
 
-It is also possible to include various effect of linked selection (i.e. background selection, selective sweeps and hitchhiking effects) locally reducing Ne (IM2N, SI2N, AM2N, SC2N).
-These models can be combined to integrate both the effect of linked selection and of barriers to gene flow (IM2N2m, AM2N2mn SC2N2m). 
+It is also possible to include various effect of linked selection (i.e. background selection, selective sweeps and hitchhiking effects) locally reducing Ne (suffix 2N).
+These models can be combined to integrate both the effect of linked selection and of barriers to gene flow:
+  * therefore the following model can be tested:
+  * IM2N, AM2N, SC2N
+  * IM2m, AM2m, SC2m
+  * IM2N2m, AM2N2mn SC2N2m  
 
-Modelling variable migration rates across the genome  is a simple way to capture the effect of genetic barriers to gene flow (due to genetic incompatibilities or local adaptation loci), that locally reduce gene flow and 
+Modelling variable migration rates across the genome  is a simple way to capture the effect of genetic barriers to gene flow (due to genetic incompatibilities or local adaptation loci), that locally reduce gene flow and
 generate heterogeneous patterns of genomic divergence. 
 
 Here, two categories of loci are considered to take into account these variable rates of gene flow across the genome, those that are "neutrally" exchanged (occurring in proportion P) 
@@ -85,6 +94,21 @@ Of course, this does not preclude to perform multiple runs to check for converge
 4. The error rate for ancestral allelic state identification in unfolded JSFS is taken into account by a misorientation parameter (O).
 
 These modifications were originally developed by Tine et al. (2014). Yoann Anciaux, Christelle Fraïsse, Pierre-Alexandre Gagnaire, and Nicolas Bierne (see Tine et al. 2014).
+
+5. additional modification:
+
+model with/without growth for all population:
+ * IMG, IM2NG, IM2MG, IN2N2MG
+ * AMG, AM2NG, AM2MG, AM2N2MG
+ * SCG, SC2NG, SC2MG, Sc2N2MG
+ * SIG, SI2NG
+ * PANG
+
+models for one pop:
+ * with instantaneous pop change (PAN)
+ * with instantaneous pop change followed by exp. growth (PANG)
+ * same with bottleneck (PANGb)
+ * samie with linked selection (suffix 2N)
 
 ## Unfolding and Folding:
 
