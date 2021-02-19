@@ -40,7 +40,7 @@ bioRxiv 782201; doi: https://doi.org/10.1101/782201
 
 Rougemont Q, Moore J-S, Leroy T, Normandeau E, Rondeau EB, Withler RE, et al. (2020) 
 Demographic history shaped geographical patterns of deleterious mutation load in a broadly distributed Pacific Salmon. PLoS Genet 16(8):e1008348. 
-https://doi.org/10.1371/journal. pgen.1008348
+https://doi.org/10.1371/journal.pgen.1008348
 
 Population genomics and history of speciation reveal fishery management gaps in two related redfish species (Sebastes mentella and Sebastes fasciatus)” (2020)
 Laura Benestan, Quentin Rougemont, Caroline Senay, Eric Normandeau, Eric Parent, Rick Rideout, Louis Bernatchez, Yvan Lambert, Céline Audet, Geneviève J. Parent 
@@ -57,8 +57,9 @@ The modified version of dadi contain several improvements
   * IM 
   * AM 
   * SI 
-  * SC 
-   and are implemented in the model_demo.py (see folder 02-modifs_v2)
+  * SC   
+
+   and are implemented in the model_demo.py see [here](https://github.com/QuentinRougemont/DemographicInference/tree/master/02-modifs_v2)
 
 2. The possibility to integrate semipermeability in the demographic models of divergence with gene flow (IM2m, AM2m) and secondary contacts (SC2m).
 
