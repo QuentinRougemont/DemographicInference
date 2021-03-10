@@ -282,7 +282,8 @@ def PANGb2N(params, ns, pts):
          population size
     nuF: Ratio of contemporary to ancient population size
 
-    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of background selection and selective sweep effects
+    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of 
+    background selection and selective sweep effects
     Q: The proportion of the genome with a reduced effective size due to selection at linked sites
     T: Time in the past at which growth began (in units of 2*Na 
        generations) 
@@ -307,7 +308,7 @@ def PANGb2N(params, ns, pts):
     
     #bottleneck and growth
     nu_func = lambda t: nuB*numpy.exp(numpy.log(nuF/nuB) * t/T)
-    phir = dadi.Integration.one_pop(phinr, xx, T, nu_func)
+    phinr = dadi.Integration.one_pop(phinr, xx, T, nu_func)
     #spectrum
     fsnr = dadi.Spectrum.from_phi(phinr, ns, (xx,))
 
