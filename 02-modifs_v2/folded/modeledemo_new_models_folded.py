@@ -156,7 +156,7 @@ def SI2NG(params, (n1,n2), pts):
 def PAN(params, (n1), pts): 
     
     """
-    Panmictic model
+    single pop model with instantaneous pop size change some time ago
 
     nu1: Size of population 1
     n1 Size of fs to generate.
@@ -172,10 +172,50 @@ def PAN(params, (n1), pts):
     fs = dadi.Spectrum.from_phi(phi, n1, (xx,))
     return fs
 
+def PAN2N(params, (n1), pts): 
+    nu, hrf, T, Q = params
+    """
+    sinlge pop model with instantaneous pop size change some time ago AND linked selection
+
+    ns = (n1,)
+    nu: Ratio of contemporary to ancient population size
+    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of background selection and selective sweep effects
+    T: Time of instantaneous pop size change (in units of 2*Na generations) 
+    Q: The proportion of the genome with a reduced effective size due to selection at linked sites
+    n1: Size of fs to generate.
+    pts: Number of points to use in grid for evaluation.
+    """
+
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+
+    #### Calculate the pectrum in normally-recombining regions
+    # phi for the equilibrium ancestral population
+    phinr = dadi.PhiManip.phi_1D(xx)
+    
+    # instantaneous population size change   
+    phinr = dadi.Integration.one_pop(phinr, xx, T, nu )
+    ## Finally, calculate the spectrum.
+    fsnr = dadi.Spectrum.from_phi(phinr, (n1), (xx,))
+
+    #### Calculate the pectrum in low recombining regions
+    # phi for the equilibrium ancestral population
+    philr = dadi.PhiManip.phi_1D(xx)
+    
+    # instantaneous population size change  
+    philr = dadi.Integration.one_pop(philr, xx, T, nu*hrf)
+    ## Finally, calculate the spectrum.
+    fslr = dadi.Spectrum.from_phi(philr, (n1), (xx,))
+
+    ### Sum the two spectra in proportion Q
+    fs= ((1-Q)*fsnr + Q*fslr) 
+    return fs
+
+
 def PANG(params, (n1), pts): 
     nu1, T, = params
     """
-    Model with exponential growth some tme ago
+    single pop model with exponential growth some time ago
 
     nu1: Ratio of contemporary to ancient population size
     T: Time in the past at which growth began (in units of 2*Na 
@@ -200,7 +240,7 @@ def PANG(params, (n1), pts):
 def PANG2N(params, (n1), pts): 
     nu1, hrf, T, Q = params
     """
-    Model with exponential growth some tme ago
+    Single pop model with exponential growth some time ago and linlked selection
 
     ns = (n1,)
     nu1: Ratio of contemporary to ancient population size
@@ -248,9 +288,9 @@ def PANG2N(params, (n1), pts):
 def PANGb(params, ns, pts): 
     nuB,nuF,T = params
     """
-   Instantanous size change followed by exponential growth. #=bottlegrowth
+    Single pop model with instantanous size change followed by exponential growth. (=bottlegrowth)
 
-    params = (nuB,,nuF,T)
+    params = (nuB,nuF,T)
     ns = (n1,)
     nuB: Ratio of population size after instantanous change to ancient
          population size
@@ -274,9 +314,9 @@ def PANGb(params, ns, pts):
 def PANGb2N(params, ns, pts): 
     nuB, nuF, hrf, T, Q = params
     """
-    Instantanous size change followed by exponential growth. #=bottlegrowth
+    Single pop model with instantanous size change followed by exponential growth AND linked selection. (=bottlegrowth)
 
-    params = (nuB, nuF,hrf, T, Q)
+    params = (nuB, nuF, hrf, T, Q)
     ns = (n1,)
     nuB: Ratio of population size after instantanous change to ancient
          population size
@@ -315,6 +355,86 @@ def PANGb2N(params, ns, pts):
     ### Sum the two spectra in proportion O (and Q)
     fs = ((1-Q)*fsnr + Q*fslr)  
     return fs
+
+def PANbG(params, ns, pts): 
+    nuB, nuF, Tb, Tf = params
+    """
+    Single pop model with instantaneous size change for a duration Tb followed by exponential growth. (=three epoch model)
+
+    params = (nuB,nuF,Tb, Tf)
+    ns = (n1,)
+    nuB: Ratio of population size after instantanous change to ancient
+         population size
+    nuF: Ratio of contemporary to ancient population size
+    Tb: Length of bottleneck (in units of 2*Na generations) 
+    Tf: Time since bottleneck recovery (in units of 2*Na generations) 
+        at whit growth began
+    pts: Number of points to use in grid for evaluation.
+    """
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+    # phi for the equilibrium ancestral population
+    phi = dadi.PhiManip.phi_1D(xx)
+    
+    #bottleneck 
+    phi = dadi.Integration.one_pop(phi, xx, Tb, nuB)
+    #growth
+    nu_func = lambda t: nuB*numpy.exp(numpy.log(nuF/nuB) * t/Tf)
+    phi = dadi.Integration.one_pop(phi, xx, Tf, nu_func)
+
+    fs = dadi.Spectrum.from_phi(phi, ns, (xx,))
+    return fs
+
+def PANbG2N(params, ns, pts): 
+    nuB, nuF, hrf, Tb, Tf, Q = params
+    """
+    Single pop model with instantaneous size change for a duration Tb followed by exponential growth AND linked selection. (=three epoch model)
+
+    params = (nuB, nuF, hrf, Tb, Tf, Q)
+    ns = (n1,)
+    nuB: Ratio of population size after instantanous change to ancient
+         population size
+    nuF: Ratio of contemporary to ancient population size
+
+    hrf: Hill-Robertson factor, i.e. the degree to which Ne is locally reduced due to the effects of 
+    background selection and selective sweep effects
+    Q: The proportion of the genome with a reduced effective size due to selection at linked sites
+    Tb: Length of the bottleneck recovery (in units of 2*Na generations)
+    Tf; Time in the past at which growth began (in units of 2*Na generations) 
+    ns, Size of fs to generate.
+    pts: Number of points to use in grid for evaluation.
+    """
+    # Define the grid we'll use
+    xx = dadi.Numerics.default_grid(pts)
+
+    # phi for the equilibrium ancestral population
+    #NON recombining region:
+    philr = dadi.PhiManip.phi_1D(xx)
+    
+    #bottleneck :
+    philr = dadi.Integration.one_pop(philr, xx, Tb, nuB*hrf) 
+
+    #growth
+    nu_func_hrf = lambda t: (nuB*numpy.exp(numpy.log(nuF/nuB) * t/Tf) )*hrf
+    philr = dadi.Integration.one_pop(philr, xx, Tf, nu_func_hrf)
+    #spectrum
+    fslr = dadi.Spectrum.from_phi(philr, ns, (xx,))
+    
+    # phi for the equilibrium ancestral population
+    #recombining region:
+    phinr = dadi.PhiManip.phi_1D(xx)
+    
+    #bottleneck 
+    phinr = dadi.Integration.one_pop(philr, xx, Tb, nuB) 
+
+    #growth
+    nu_func = lambda t: nuB*numpy.exp(numpy.log(nuF/nuB) * t/Tf)
+    phinr = dadi.Integration.one_pop(phinr, xx, Tf, nu_func)
+    #spectrum
+    fsnr = dadi.Spectrum.from_phi(phinr, ns, (xx,))
+
+    ### Sum the two spectra in proportion O (and Q)
+    fs = ((1-Q)*fsnr + Q*fslr)  
 
 def IM(params, (n1,n2), pts):
     nu1, nu2, m12, m21, Ts = params
