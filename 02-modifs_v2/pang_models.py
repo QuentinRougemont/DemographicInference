@@ -330,6 +330,36 @@ for namemodel in model_list:
 
 
     #models with linked selection below
+    if namemodel == "PAN2N": 
+
+        # single pop model with instantaneous size change and linked selection: nu, hrf, T, Q
+        func = modeledemo_new_models_folded.PAN2N
+
+        for optimizationstate in opt_list:
+            print optimizationstate
+
+            if optimizationstate == "anneal_hot":
+                params = (1, 1,  1, 0.1)
+            elif optimizationstate == "anneal_cold":
+                params = (popt[0], popt[1], popt[2], popt[3])
+            else:
+                params = (popt[0], popt[1], popt[2], popt[3])
+
+            # The upper_bound array is for use in optimization. Occasionally the optimizer
+            # will try wacky parameter values. We in particular want to exclude values with
+            # very long times, as they will take a long time to evaluate.
+            upper_bound = [200,  1, 20, 0.5 ]
+            lower_bound = [0.01, 0.01, 0.0001, 0.01]
+
+            done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
+                                  nompop1=nompop1, params=params, fixed_params=None, lower_bound=lower_bound, 
+                                  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
+                                  outputname=outputname + "/" + outputname, 
+                                  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
+                                  schedule= "cauchy")
+        if done: print(("\n" + namemodel + " : done\n"))
+
+
     if namemodel == "PANG2N": 
 
         # single pop model with exponential growth with linked selection: nu1, hrf, T, Q
