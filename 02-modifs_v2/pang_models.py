@@ -21,7 +21,7 @@ def usage():
     print("# This script allow you to test different demographic models on your genomic data\n"+
         "# and will give you which one is the best fitted.\n\n"+
         "# This is an exemple of the most complete command line :\n"+
-        "# -o pathoutput -y population1 -p 10,20,30 -f pathfsfile -m PAN, PANG, PANGb, PANG2N, PANGb2N -l -a -h -v\n\n"+
+        "# -o pathoutput -y population1 -p 10,20,30 -f pathfsfile -m PAN,PANG,PANGb,PANbG,PAN2N,PANG2N,PANGb2N,PANbG2N  -l -a -h -v\n\n"+
         "# This is an exemple of the shortest command line:\n"+
         "# -f pathfsfile\n\n"+
         "# -h --help : Display the help you are looking at.\n"+
@@ -43,7 +43,7 @@ def takearg(argv):
     masked = False # freq 0,1 and 1,0 masked if masked = 1
     pts_l = None  # Grids sizes for extrapolation
     outputname = "mis_fs_2d_optlog"
-    model_list = ["PAN","PANG","PANGb","PANG2N","PANGb2N"]
+    model_list = ["PAN","PANG","PANGb","PANbG","PAN2N","PANG2N","PANGb2N","PANbG2N"]
     verbose = False
     logparam = False
     nompop1 = "Pop1"
@@ -213,7 +213,7 @@ for namemodel in model_list:
     time.sleep(1.0)
     if namemodel == "PAN": 
 
-        # two epoch model: nu1,T
+        # sinlge pop model instantaneous bottleneck : nu1,T
 	#warning: this corresponds to the two epoch model of dadi
         func = modeledemo_new_models_folded.PAN
 
@@ -243,7 +243,7 @@ for namemodel in model_list:
 
     if namemodel == "PANG": 
 
-        # panmictic model: nu1, T
+        # single pop model, growth: nu1, T
         func = modeledemo_new_models_folded.PANG
 
         for optimizationstate in opt_list:
@@ -272,7 +272,7 @@ for namemodel in model_list:
 
     if namemodel == "PANGb": 
 
-        # panmictic model: nu1, nuF, T
+        # single pop model (bottlegrowth) : nu1, nuF, T
         func = modeledemo_new_models_folded.PANGb
 
         for optimizationstate in opt_list:
@@ -298,10 +298,41 @@ for namemodel in model_list:
                                   verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
                                   schedule= "cauchy")
         if done: print(("\n" + namemodel + " : done\n"))
+    
+    if namemodel == "PANbG": 
 
+        # single pop model - bottleneck of duration Tb followed by exp. growth : nu1, nuF, Tb, TF
+        func = modeledemo_new_models_folded.PANbG
+
+        for optimizationstate in opt_list:
+            print optimizationstate
+
+            if optimizationstate == "anneal_hot":
+                params = (1, 1, 1, 1)
+            elif optimizationstate == "anneal_cold":
+                params = (popt[0], popt[1], popt[2], popt[3])
+            else:
+                params = (popt[0], popt[1], popt[2], popt[3])
+
+            # The upper_bound array is for use in optimization. Occasionally the optimizer
+            # will try wacky parameter values. We in particular want to exclude values with
+            # very long times, as they will take a long time to evaluate.
+            upper_bound = [200, 200, 20, 20 ]
+            lower_bound = [0.001, 0.001, 0.0001, 0.00001]
+
+            done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
+                                  nompop1=nompop1, params=params, fixed_params=None, lower_bound=lower_bound, 
+                                  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
+                                  outputname=outputname + "/" + outputname, 
+                                  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
+                                  schedule= "cauchy")
+        if done: print(("\n" + namemodel + " : done\n"))
+
+
+    #models with linked selection below
     if namemodel == "PANG2N": 
 
-        # panmictic model: nu1, hrf, T, Q
+        # single pop model with exponential growth with linked selection: nu1, hrf, T, Q
         func = modeledemo_new_models_folded.PANG2N
 
         for optimizationstate in opt_list:
@@ -330,7 +361,7 @@ for namemodel in model_list:
 
     if namemodel == "PANGb2N": 
 
-        # panmictic model: nuF, nuF,hrf, T, Q
+        #single pop model bottlegrowth with linked selection: nuF, nuF,hrf, T, Q
         func = modeledemo_new_models_folded.PANGb2N
 
         for optimizationstate in opt_list:
@@ -356,4 +387,34 @@ for namemodel in model_list:
                                   verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
                                   schedule= "cauchy")
         if done: print(("\n" + namemodel + " : done\n"))
+
+    if namemodel == "PANbG2N": 
+
+        # three epoch model with linked selection: nuF, nuF,hrf, Tb, Tb, Q
+        func = modeledemo_new_models_folded.PANbG2N
+
+        for optimizationstate in opt_list:
+            print optimizationstate
+
+            if optimizationstate == "anneal_hot":
+                params = (1, 1, 1, 1, 1, 0.1)
+            elif optimizationstate == "anneal_cold":
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5])
+            else:
+                params = (popt[0], popt[1], popt[2], popt[3], popt[4], popt[5])
+
+            # The upper_bound array is for use in optimization. Occasionally the optimizer
+            # will try wacky parameter values. We in particular want to exclude values with
+            # very long times, as they will take a long time to evaluate.
+            upper_bound = [200, 200, 1, 20, 20, 0.5]
+            lower_bound = [0.01, 0.01, 0.01, 0.0001, 0.0001, 0.01]
+
+            done, ll_opt_dic, nbparam_dic, popt = callmodel(func, data, output_file, namemodel, ll_opt_dic, nbparam_dic,
+                                  nompop1=nompop1, params=params, fixed_params=None, lower_bound=lower_bound, 
+                                  upper_bound=upper_bound,  pts_l=pts_l, ns=ns,
+                                  outputname=outputname + "/" + outputname, 
+                                  verbose=verbose, maxiter=20, Tini=50, Tfin=0, learn_rate=0.005, 
+                                  schedule= "cauchy")
+        if done: print(("\n" + namemodel + " : done\n"))
+
 
