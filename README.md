@@ -33,7 +33,7 @@ Tine M, Kuhl H, Gagnaire P-A et al. (2014) European sea bass genome and its vari
 
 Rougemont, Q., Gagnaire, P.-A., Perrier, C., Genthon, C., Besnard, A.-L., Launey, S. and Evanno, G. (2016), Inferring the demographic history underlying parallel genomic divergence among pairs of parasitic and non-parasitic lamprey ecotypes. Mol Ecol. Accepted Author Manuscript. https://doi:10.1111/mec.13664
 
-Hugo Cayuela, Quentin Rougemont, Martin Laporte, Claire Mérot, Eric Normandeau, Yann Dorant, Ole K. Tørresen, Siv Nam Khang Hoff, Sissel Jentoft, Pascal Sirois, Martin Castonguay, Teunis Jansen, Kim Praebel, Marie Clément, Louis Bernatchez
+Hugo Cayuela\*, Quentin Rougemont\*, Martin Laporte, Claire Mérot, Eric Normandeau, Yann Dorant, Ole K. Tørresen, Siv Nam Khang Hoff, Sissel Jentoft, Pascal Sirois, Martin Castonguay, Teunis Jansen, Kim Praebel, Marie Clément, Louis Bernatchez
 Shared ancestral polymorphism and chromosomal rearrangements as potential drivers of local adaptation in a marine fish
 https://doi.org/10.1111/mec.15499
 bioRxiv 782201; doi: https://doi.org/10.1101/782201  
@@ -60,6 +60,10 @@ The modified version of dadi contain several improvements
   * SC   
 
    and are implemented in the model_demo.py see [here](https://github.com/QuentinRougemont/DemographicInference/tree/master/02-modifs_v2)
+
+the models are displayed below:
+![example_graph](https://github.com/QuentinRougemont/DemographicInference/blob/main/pictures/Fig1.png)
+
 
 2. The possibility to integrate semipermeability in the demographic models of divergence with gene flow (IM2m, AM2m) and secondary contacts (SC2m).
 
@@ -105,11 +109,18 @@ model with/without growth for all population:
  * SI/SIG, SI2N/SI2NG
  * PANG
 
+![example_graph](https://github.com/QuentinRougemont/DemographicInference/blob/main/pictures/Fig2.png)
+
+
+
 model with/without growth IN ANCESTRAL population:
  * IMA/IMAG, IMA2N/IMA2NG, IMA2m/IMA2mG, IMA2N2m/IMA2N2mG
  * AMA/AMAG, AMA2N/AMA2NG, AMA2m/AMA2mG, AMA2N2m/AMA2N2mG
  * SCA/SCAG, SCA2N/SCA2NG, SCA2m/SCA2mG, SCA2N2m/SCA2N2mG
  * SIA/SIAG, SIA2N/SIA2NG
+
+![example_graph](https://github.com/QuentinRougemont/DemographicInference/blob/main/pictures/Fig2.png)
+
 
 models with multiple phase of isolation contacts are also implemented and can be modified easily
 
