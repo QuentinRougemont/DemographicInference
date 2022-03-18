@@ -62,7 +62,7 @@ The modified version of dadi contain several improvements
    and are implemented in the model_demo.py see [here](https://github.com/QuentinRougemont/DemographicInference/tree/master/02-modifs_v2)
 
 the models are displayed below:
-![example_graph](https://github.com/QuentinRougemont/DemographicInference/tree/master/pictures/Fig1.png)
+![example_graph](https://github.com/QuentinRougemont/DemographicInference/blob/master/pictures/Fig1.png)
 
 
 2. The possibility to integrate semipermeability in the demographic models of divergence with gene flow (IM2m, AM2m) and secondary contacts (SC2m).
@@ -109,7 +109,7 @@ model with/without growth for all population:
  * SI/SIG, SI2N/SI2NG
  * PANG
 
-![example_graph](https://github.com/QuentinRougemont/DemographicInference/tree/master/pictures/Fig2.png)
+![example_graph](https://github.com/QuentinRougemont/DemographicInference/blob/master/pictures/Fig2.png)
 
 
 
@@ -119,7 +119,7 @@ model with/without growth IN ANCESTRAL population:
  * SCA/SCAG, SCA2N/SCA2NG, SCA2m/SCA2mG, SCA2N2m/SCA2N2mG
  * SIA/SIAG, SIA2N/SIA2NG
 
-![example_graph](https://github.com/QuentinRougemont/DemographicInference//tree/master/pictures/Fig3.png)
+![example_graph](https://github.com/QuentinRougemont/DemographicInference/blob/master/pictures/Fig3.png)
 
 
 models with multiple phase of isolation contacts are also implemented and can be modified easily
