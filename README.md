@@ -1,6 +1,12 @@
 # DemographicInference
 This repository contains files and scripts from dadi v1.6.3 (Gutenkunst et al. 2009) that were modified to improve optimization, as well as custom models that account for semi-permeability (i.e by including variable effective migration rates across the genome), as introduced by Tine et al 2014. The repository also contains data from Rougemont et al. 2016 who applied these models to European lamprey ecotypes using both Folded and Unfolded JSFS. The approach implemented in dadi relies on the comparison of alternative demographic models of divergence to genome-wide polymorphism data.
 
+
+
+[![DOI](https://zenodo.org/badge/54107776.svg)](https://zenodo.org/badge/latestdoi/54107776)
+
+
+
 ## WARNING:
 
 This pipeline requires `scipy` v0.13.3 or older versions. 
