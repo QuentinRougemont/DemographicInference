@@ -6,6 +6,10 @@ This repository contains files and scripts from dadi v1.6.3 (Gutenkunst et al. 2
 [![DOI](https://zenodo.org/badge/54107776.svg)](https://zenodo.org/badge/latestdoi/54107776)
 
 
+## TO DO: 
+
+make everything compatible with python3 ....
+
 
 ## WARNING:
 
